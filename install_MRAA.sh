@@ -2,7 +2,7 @@
 
 #############################
 #
-#    copyright 2016 Open Interconnect Consortium, Inc. All rights reserved.
+#    copyright 2018 Open Interconnect Consortium, Inc. All rights reserved.
 #    Redistribution and use in source and binary forms, with or without modification,
 #    are permitted provided that the following conditions are met:
 #    1.  Redistributions of source code must retain the above copyright notice,
@@ -21,8 +21,10 @@
 #    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #############################
+set -x
 
-curpwd=`pwd`
+
+CURPWD=`pwd`
 cd ..
 
 # step 1
@@ -38,4 +40,4 @@ cmake .. && make && sudo make install
 cd ./examples 
 sudo ./blink-io 7
 
-cd $curpwd
+cd $CURPWD
