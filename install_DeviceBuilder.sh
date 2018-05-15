@@ -26,7 +26,7 @@ cd ..
 # clone the repo
 git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example
-cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json ..
+cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json .
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../input-lightdevice.json  ../device_output \"oic.d.light\"" >> gen.sh
