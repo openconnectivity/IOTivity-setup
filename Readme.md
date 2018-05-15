@@ -17,7 +17,7 @@ Typical folder layout to start from (e.g. create the IOT folder in the home fold
 clone in this folder:
 git clone https://github.com/openconnectivity/IOTivity-setup.git
      
-     This command will give the next folder structure
+     This command will give the next folder structure :
      
      ~/IOT
         |-IOTivity-setup 
@@ -26,7 +26,8 @@ From this folder run the scripts:
 - install_DeviceBuilder.sh
 - install_IOTivity.sh
 - install_MRAA.sh
-e.g. exectute in the folder: sh install_<>.sh
+
+e.g. exectute in the ~/IOT folder: sh install_<>.sh
     
     
 Folder structure after everything is installed:
@@ -43,8 +44,7 @@ Folder structure after everything is installed:
             | run.sh             run the generated code
             | reset.sh           reset the device to ready for onboarding state.
         
-        
-        The generated code will be in 
+        after running gen.sh the generated code will be in : 
         ~/IOT        
             |-- device_output
         
