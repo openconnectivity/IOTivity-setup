@@ -36,6 +36,6 @@ echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/x8
 echo "cd .." >> gen.sh
 # create the build script
 echo "cd iotivity" > build.sh
-echo "scons resource/examples" > build.sh
+echo "scons resource/examples" >> build.sh
 echo "cd .." >> build.sh
 cd $CURPWD
