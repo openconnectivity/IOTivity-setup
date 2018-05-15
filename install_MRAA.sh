@@ -1,6 +1,5 @@
 #!/bin/bash
 set -x #echo on
-
 #############################
 #
 #    copyright 2018 Open Interconnect Consortium, Inc. All rights reserved.
@@ -22,21 +21,16 @@ set -x #echo on
 #    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #############################
-
 CURPWD=`pwd`
 cd ..
-
 # step 1
 git clone https://github.com/intel-iot-devkit/mraa.git
-
 # step 2
 mkdir mraa/build 
 cd mraa/build
 # build
 cmake .. && make && sudo make install
-
 # step 3
 cd ./examples 
 sudo ./blink-io 7
-
 cd $CURPWD
