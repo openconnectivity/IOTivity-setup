@@ -9,13 +9,27 @@ All repos are being set up 1 level above this folder.
 The devicebuilder script generates a few scripts in the folder above this repo.
 
 
-typical folder layout
+Typical folder layout to start from (e.g. create the IOT folder in the home folder)
+     
+     
+     ~/IOT
+     
+clone in this folder:
+git clone https://github.com/openconnectivity/IOTivity-setup.git
+     
+     This command will give the next folder structure
      
      ~/IOT
         |-IOTivity-setup 
     
+From this folder run the scripts:
+- install_DeviceBuilder.sh
+- install_IOTivity.sh
+- install_MRAA.sh
+e.g. exectute in the folder: sh install_<>.sh
     
-folder structure after everything is installed:
+    
+Folder structure after everything is installed:
         
         ~/IOT        
             |-- iotivity         IOTivity source code
@@ -33,8 +47,6 @@ folder structure after everything is installed:
         The generated code will be in 
         ~/IOT        
             |-- device_output
-        
-        
         
 # gen.sh
 This script runs the DeviceBuilder with the correct arguments.
