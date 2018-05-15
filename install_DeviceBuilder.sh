@@ -42,7 +42,7 @@ echo "cd .." >> build.sh
 # create the run script
 echo "CURPWD=`pwd`"> run.sh
 echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> run.sh
-echo "simpleserver" >> run.sh
+echo "./simpleserver" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "CURPWD=`pwd`"> reset.sh
