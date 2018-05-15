@@ -33,6 +33,7 @@ echo "sh ./DeviceBuilder_C++IotivityServer.sh ../input-lightdevice.json  ../devi
 echo "cp ../device_output/code/server.cpp ../iotivity/resource/examples/simpleserver.cpp " >> gen.sh
 echo "#cp ../device_output/code/server_introspection.dat ../iotivity/out/windows/win32/amd64/debug/resource/examples/." >> gen.sh
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/x86_64/release/resource/examples/." >> gen.sh
+echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/x86_64/release/resource/examples/server_security.dat" >> gen.sh
 echo "cd .." >> gen.sh
 # create the build script
 echo "cd iotivity" > build.sh
@@ -45,6 +46,6 @@ echo "simpleserver" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "CURPWD=`pwd`"> reset.sh
-echo "cp ./device_output/code/server_introspection.dat ../iotivity/out/linux/x86_64/release/resource/examples/." >> reset.sh
+echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/x86_64/release/resource/examples/server_security.dat" >> gen.sh
 echo "cd $CURPWD" >> reset.sh
 cd $CURPWD
