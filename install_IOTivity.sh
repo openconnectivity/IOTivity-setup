@@ -22,6 +22,9 @@
 #
 #############################
 
+curpwd=`pwd`
+cd ..
+
 # step 1
 sudo apt-get install build-essential git scons libtool \
 autoconf valgrind doxygen wget unzip cmake libboost-dev \
@@ -43,3 +46,5 @@ extlibs/mbedtls/mbedtls -b mbedtls-2.4.2
 # step 4
 git fetch origin refs/changes/13/22513/12
 git checkout FETCH_HEAD
+
+cd $curpwd
