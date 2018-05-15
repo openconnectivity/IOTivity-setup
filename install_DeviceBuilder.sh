@@ -39,12 +39,12 @@ echo "cd iotivity" > build.sh
 echo "scons resource/examples" >> build.sh
 echo "cd .." >> build.sh
 # create the run script
-echo "CURPWD=`pwd`"`> run.sh
+echo "CURPWD=`pwd`"> run.sh
 echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> run.sh
 echo "simpleserver" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
-echo "CURPWD=`pwd`"`> reset.sh
+echo "CURPWD=`pwd`"> reset.sh
 echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> reset.sh
 echo "simpleserver" >> reset.sh
 echo "cd $CURPWD" >> reset.sh
