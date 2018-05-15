@@ -26,4 +26,20 @@ cd ..
 # step 1
 git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 
+cp ../DeviceBuilder/test/input_DeviceBuilderInputFormat/input-switch.json ..
+
+# create the generation script
+echo "cd DeviceBuilder" > ../gen.sh
+echo "sh ./DeviceBuilder_C++IotivityServer.sh ../input-switch.json  ../device_output \"oic.d.light\"" >> ../gen.sh
+echo "cp ../device_output/code/*.cpp ../iotivity/resource/examples/. " >> ../gen.sh
+echo "#cp ../device_output/code/server_introspection.dat ../iotivity/out/windows/win32/amd64/debug/resource/examples/." >> ../gen.sh
+echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/x86_64/release/resource/examples/." >> ../gen.sh
+echo "cd .." >> ../gen.sh
+
+# create the build script
+echo "cd iotivity" > ../build.sh
+echo "scons resource/examples" > ../build.sh
+echo "cd .." >> ../build.sh
+
+
 cd $CURPWD
