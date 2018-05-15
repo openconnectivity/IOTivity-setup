@@ -30,7 +30,7 @@ cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json .
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../input-lightdevice.json  ../device_output \"oic.d.light\"" >> gen.sh
-echo "cp ../device_output/code/*.cpp ../iotivity/resource/examples/. " >> gen.sh
+echo "cp ../device_output/code/server.cpp ../iotivity/resource/examples/simpleserver.cpp " >> gen.sh
 echo "#cp ../device_output/code/server_introspection.dat ../iotivity/out/windows/win32/amd64/debug/resource/examples/." >> gen.sh
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/x86_64/release/resource/examples/." >> gen.sh
 echo "cd .." >> gen.sh
@@ -38,4 +38,14 @@ echo "cd .." >> gen.sh
 echo "cd iotivity" > build.sh
 echo "scons resource/examples" >> build.sh
 echo "cd .." >> build.sh
+# create the run script
+echo "CURPWD=`pwd`"`> run.sh
+echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> run.sh
+echo "simpleserver" >> run.sh
+echo "cd $CURPWD" >> run.sh
+# create the reset script
+echo "CURPWD=`pwd`"`> reset.sh
+echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> reset.sh
+echo "simpleserver" >> reset.sh
+echo "cd $CURPWD" >> reset.sh
 cd $CURPWD
