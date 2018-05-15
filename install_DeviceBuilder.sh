@@ -45,7 +45,6 @@ echo "simpleserver" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "CURPWD=`pwd`"> reset.sh
-echo "cd ./iotivity/out/linux/x86_64/release/resource/examples" >> reset.sh
-echo "simpleserver" >> reset.sh
+echo "cp ./device_output/code/server_introspection.dat ../iotivity/out/linux/x86_64/release/resource/examples/." >> reset.sh
 echo "cd $CURPWD" >> reset.sh
 cd $CURPWD
