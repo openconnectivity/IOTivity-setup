@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x #echo on
 
 #############################
 #
@@ -21,8 +22,6 @@
 #    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #############################
-set -x
-
 
 CURPWD=`pwd`
 cd ..
