@@ -48,4 +48,7 @@ echo "cd $CURPWD" >> run.sh
 echo "CURPWD=`pwd`"> reset.sh
 echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/x86_64/release/resource/examples/server_security.dat" >> gen.sh
 echo "cd $CURPWD" >> reset.sh
+
 cd $CURPWD
+
+chmod a+x *.sh
