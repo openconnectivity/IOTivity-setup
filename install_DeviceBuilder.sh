@@ -29,24 +29,27 @@ CURPWD=`pwd`
 ARCH=armv7l
 
 
+slinux="linux"
 s1=$1
 s2=$2
-echo $s1 $s2
+echo "$s1 $s2"
 
 
 # supplied linux on the command line, overwrite the architecture
-if [ "$s2" == "linux" ]
+if [ "$s2" == "$slinux" ]
 then
 # linux unbuntu
 ARCH=x86_64
 fi
 
 # supplied linux on the command line, overwrite the architecture
-if [ "$s1" == "linux" ]
+if [ "$s1" == "$slinux" ]
 then
 # linux unbuntu
 ARCH=x86_64
 fi
+
+echo "using architecture: $ARCH"
 
 cd ..
 # clone the repo
