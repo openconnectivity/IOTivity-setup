@@ -3,7 +3,7 @@
 This repo contains a few scripts to setup:
 - Iotivity
 - DeviceBuilder
-- MRAA library
+-  MRAA library
 All repos are being set up 1 level above this folder.
 
 The devicebuilder script generates a few scripts in the folder above this repo.
@@ -22,9 +22,9 @@ git clone https://github.com/openconnectivity/IOTivity-setup.git
      ~/IOT
         |-IOTivity-setup 
     
-From this folder run the scripts:
-- install_DeviceBuilder.sh
+From this folder run the scripts (in order):
 - install_IOTivity.sh
+- install_DeviceBuilder.sh
 - install_MRAA.sh
 
 e.g. exectute in the ~/IOT folder: sh install_<>.sh
