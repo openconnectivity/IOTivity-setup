@@ -34,7 +34,7 @@ git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example 
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
 # replace the build file
-cp ./SConscript ../iotivity/examples/OCFSecure/.  
+cp ./SConscript ../iotivity/examples/OCFSecure/SConscript 
 
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
