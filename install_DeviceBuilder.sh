@@ -37,9 +37,9 @@ cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json e
 echo "cd DeviceBuilder" > gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/OCFSecure/server.cpp " >> gen.sh
-echo "mkdir ../iotivity/out/linux/$ARCH/release/examples/OCFSecure" >> gen.sh
-echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/$ARCH/release/examples/OCFSecure/." >> gen.sh
-echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/$ARCH/release/examples/OCFSecure/server_security.dat" >> gen.sh
+echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> gen.sh
+echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/." >> gen.sh
+echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/server_security.dat" >> gen.sh
 echo "cd .." >> gen.sh
 # create the build script
 echo "cd iotivity" > build.sh
@@ -48,17 +48,17 @@ echo "scons examples/OCFSecure" >> build.sh
 echo "cd .." >> build.sh
 # create the run script
 echo "CURPWD=`pwd`"> run.sh
-echo "#cd ./iotivity/out/linux/$ARCH/release/resource/examples" >> run.sh
+echo "#cd ./iotivity/out/linux/${ARCH}/release/resource/examples" >> run.sh
 echo "#./simpleserver" >> run.sh
-echo "cd ./iotivity/out/linux/$ARCH/release/examples/OCFSecure" >> run.sh
+echo "cd ./iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> run.sh
 echo "./server" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "CURPWD=`pwd`"> reset.sh
-echo "#cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/$ARCH/release/resource/examples/server_security.dat" >> reset.sh
+echo "#cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
 
-echo "mkdir ../iotivity/out/linux/$ARCH/release/examples/OCFSecure"
-echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/$ARCH/release/resource/examples/server_security.dat" >> reset.sh
+echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure"
+echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
 
 echo "cd $CURPWD" >> reset.sh
 
