@@ -65,4 +65,4 @@ echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
 
-chmod a+x *.sh
+chmod a+x ../*.sh
