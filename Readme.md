@@ -28,6 +28,11 @@ From this folder run the scripts (in order):
 - install_MRAA.sh
 
 e.g. exectute in the ~/IOT folder: sh install_<>.sh
+
+### linux/ubuntu as executable environment
+Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the pi board.
+if one wants to use linux (ubuntu PC) as execution platform then add the linux as argument on the commandline:
+```sh install_DeviceBuilder.sh linux```
     
     
 Folder structure after everything is installed:
