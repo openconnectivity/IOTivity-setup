@@ -28,6 +28,13 @@ CURPWD=`pwd`
 ARCH=armv7l
 
 # supplied linux on the command line, overwrite the architecture
+if [ $2 == "linux" ]
+then
+# linux unbuntu
+ARCH=x86_64
+fi
+
+# supplied linux on the command line, overwrite the architecture
 if [ $1 == "linux" ]
 then
 # linux unbuntu
