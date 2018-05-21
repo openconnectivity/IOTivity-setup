@@ -29,12 +29,7 @@ From this folder run the scripts (in order):
 
 e.g. exectute in the ~/IOT folder: sh install_<>.sh
 
-### linux/ubuntu as executable environment
-Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the pi board.
-if one wants to use linux (ubuntu PC) as execution platform then add the linux as argument on the commandline:
-```sh install_DeviceBuilder.sh linux```
-    
-    
+
 Folder structure after everything is installed:
         
         ~/IOT        
@@ -53,6 +48,12 @@ Folder structure after everything is installed:
         ~/IOT        
             |-- device_output
         
+
+#### linux/ubuntu as executable environment
+Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the pi board.
+if one wants to use linux (ubuntu PC) as execution platform then add the linux as argument on the commandline:
+```sh install_DeviceBuilder.sh linux```
+    
 # gen.sh
 This script runs the DeviceBuilder with the correct arguments.
 running this script generates the device_output folder AND copies the result to the correct folder in the iotivity tree structure.
