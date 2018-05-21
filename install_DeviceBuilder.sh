@@ -33,8 +33,7 @@ cd ..
 git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example 
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
-# replace the build file
-cp ./SConscript ../iotivity/examples/OCFSecure/SConscript 
+
 
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
@@ -67,5 +66,8 @@ echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out
 echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
+
+# replace the build file
+cp ./SConscript ../iotivity/examples/OCFSecure/SConscript 
 
 chmod a+x ../*.sh
