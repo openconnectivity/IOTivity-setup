@@ -24,9 +24,9 @@ set -x #echo on
 CURPWD=`pwd`
 
 # linux pi
-set ARCH=armv7l
+ARCH=armv7l
 # linux unbuntu
-set ARCH=x86_64
+ARCH=x86_64
 
 cd ..
 # clone the repo
@@ -35,6 +35,7 @@ git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
+
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/OCFSecure/server.cpp " >> gen.sh
 echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> gen.sh
