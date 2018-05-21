@@ -23,18 +23,14 @@ set -x #echo on
 #############################
 CURPWD=`pwd`
 
-
 # linux pi
 # default
 ARCH=armv7l
-
-
 a="linux"
 b=$1
 echo "1=$a "
-
 # supplied linux on the command line, overwrite the architecture
-if [ "$a" == "$b" ]; then
+if [ "$a" = "$b" ]; then
 # linux unbuntu
 ARCH=x86_64
 fi
