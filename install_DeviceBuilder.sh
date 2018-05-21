@@ -27,6 +27,9 @@ CURPWD=`pwd`
 # default
 ARCH=armv7l
 
+echo $0 $1 $2 
+
+
 # supplied linux on the command line, overwrite the architecture
 if [ $2 == "linux" ]
 then
