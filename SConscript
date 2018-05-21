@@ -47,7 +47,7 @@ samples_env.PrependUnique(CPPPATH=[
 cpp_defines = ['__WITH_DTLS__', 'TB_LOG']
 libraries = ['octbstack']
 libraries.append('oc')
-libraries.append('log')
+#libraries.append('log')
 		
 platform_info = p.platform()
 joule = 'Linux' in platform_info and 'joule' in platform_info and \
