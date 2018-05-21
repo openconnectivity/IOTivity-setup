@@ -64,3 +64,15 @@ This script goes to the folder where the executable resides and starts it.
 
 # reset.sh
 This script overwrites the security file from the device_output folder
+
+
+
+# SConscript
+
+The scon script to overwrite it the folder:
+
+```iotivity/examples/OCFSecure```
+
+This build script will:
+- have all includes to build the C++ example 
+- MRAA linkage

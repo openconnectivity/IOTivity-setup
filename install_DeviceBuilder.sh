@@ -38,6 +38,7 @@ echo "cd DeviceBuilder" > gen.sh
 
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/OCFSecure/server.cpp " >> gen.sh
+echo "cp ./SConscript ../iotivity/examples/OCFSecure/. " >> gen.sh
 echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> gen.sh
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/." >> gen.sh
 echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/server_security.dat" >> gen.sh
