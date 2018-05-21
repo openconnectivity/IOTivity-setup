@@ -24,9 +24,15 @@ set -x #echo on
 CURPWD=`pwd`
 
 # linux pi
+# default
 ARCH=armv7l
+
+# supplied linux on the command line, overwrite the architecture
+if [ $1 == "linux" ]
+then
 # linux unbuntu
 ARCH=x86_64
+fi
 
 cd ..
 # clone the repo
