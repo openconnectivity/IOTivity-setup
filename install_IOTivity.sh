@@ -43,8 +43,8 @@ extlibs/tinycbor/tinycbor -b v0.4.1
 git clone https://github.com/ARMmbed/mbedtls.git \
 extlibs/mbedtls/mbedtls -b mbedtls-2.4.2
 
-# step 4
-git fetch origin refs/changes/13/22513/12
-git checkout FETCH_HEAD
+# step 4 - not needed anymore, since the git pull request is now integraged in 1.3-rel
+#git fetch origin refs/changes/13/22513/12
+#git checkout FETCH_HEAD
 
 cd $curpwd
