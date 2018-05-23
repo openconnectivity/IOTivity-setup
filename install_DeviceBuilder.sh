@@ -46,11 +46,6 @@ git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example 
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
 
-echo "making the example directory"
-mkdir -p ./iotivity/examples/${code_path}
-# add the build file
-cp ./SConscript ./iotivity/examples/${code_path}/SConscript 
-
 
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
@@ -83,5 +78,12 @@ echo "cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}
 echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
+
+echo "making the example directory"
+mkdir -p ../iotivity/examples/${code_path}
+# add the build file
+cp ./SConscript ../iotivity/examples/${code_path}/SConscript 
+
+
 
 chmod a+x ../*.sh
