@@ -49,7 +49,7 @@ cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json e
 echo "making the example directory"
 mkdir -p ./iotivity/examples/${code_path}
 # add the build file
-cp ./SConscript ../iotivity/examples/${code_path}/SConscript 
+cp ./SConscript ./iotivity/examples/${code_path}/SConscript 
 
 
 # create the generation script
