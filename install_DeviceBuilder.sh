@@ -23,6 +23,9 @@ set -x #echo on
 #############################
 CURPWD=`pwd`
 
+#path of the code
+code_path=OCFDeviceBuilder
+
 # linux pi
 # default
 ARCH=armv7l
@@ -43,40 +46,43 @@ git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example 
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
 
+echo "making the example directory"
+mkdir -p ../iotivity/examples/${code_path}
+
 
 # create the generation script
 echo "cd DeviceBuilder" > gen.sh
 
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
-echo "cp ../device_output/code/server.cpp ../iotivity/examples/OCFSecure/server.cpp " >> gen.sh
-echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> gen.sh
-echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/." >> gen.sh
-echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure/server_security.dat" >> gen.sh
+echo "cp ../device_output/code/server.cpp ../iotivity/examples/${code_path}/server.cpp " >> gen.sh
+echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> gen.sh
+echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
+echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
 echo "cd .." >> gen.sh
 # create the build script
 echo "cd iotivity" > build.sh
 echo "#scons resource/examples" >> build.sh
-echo "scons examples/OCFSecure" >> build.sh
+echo "scons examples/${code_path}" >> build.sh
 echo "cd .." >> build.sh
 # create the run script
 echo "CURPWD=`pwd`"> run.sh
 echo "#cd ./iotivity/out/linux/${ARCH}/release/resource/examples" >> run.sh
 echo "#./simpleserver" >> run.sh
-echo "cd ./iotivity/out/linux/${ARCH}/release/examples/OCFSecure" >> run.sh
+echo "cd ./iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> run.sh
 echo "./server" >> run.sh
 echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "CURPWD=`pwd`"> reset.sh
 echo "#cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
 
-echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/OCFSecure"
-echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
+echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/${code_path}"
+echo "cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
 
 echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
 
 # replace the build file
-cp ./SConscript ../iotivity/examples/OCFSecure/SConscript 
+cp ./SConscript ../iotivity/examples/${code_path}/SConscript 
 
 chmod a+x ../*.sh

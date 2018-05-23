@@ -103,17 +103,17 @@ if target_os in ['linux']:
 ######################################################################
 #client = samples_env.Program('client', ['client.c'])
 server = samples_env.Program('server', ['server.cpp'])
-examples_dir = '/examples/OCFSecure/'
-client_dat = samples_env.Install(
-    build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_client.dat')
-client_dev = samples_env.Install(
-    build_dir + examples_dir, src_dir + examples_dir + 'device_properties.dat')
+examples_dir = '/examples/OCFDeviceBuilder/'
+#client_dat = samples_env.Install(
+#    build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_client.dat')
+#client_dev = samples_env.Install(
+#    build_dir + examples_dir, src_dir + examples_dir + 'device_properties.dat')
 server_dat = samples_env.Install(
     build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_server.dat')
 
 #list_of_samples = [client, client_dat, client_dev, server, server_dat]
 list_of_samples = [server, server_dat]
 
-Alias("secureExampels", list_of_samples)
+Alias("secureDeviceBuilder", list_of_samples)
 
-env.AppendTarget('secureExampels')
+env.AppendTarget('secureDeviceBuilder')
