@@ -1,13 +1,11 @@
 # IOTivity setup
 
-This repo contains a few scripts to setup:
-- Iotivity
-- DeviceBuilder
--  MRAA library
-All repos are being set up 1 level above this folder.
-
-The devicebuilder script generates a few scripts in the folder above this repo.
-
+This repo contains bash scripts to setup a build enviroment to use DeviceBuilder with IOTivity.
+The scripts setup the next repos (from git) in the folders:
+- iotivity (IOTivity 1.3.1)
+- DeviceBuilder (latest version)
+- mraa (MRAA library to interact with HW)
+All repos are being set up 1 level above the folder of IOTivity-setup folder.
 
 Typical folder layout to start from (e.g. create the IOT folder in the home folder)
      
@@ -15,19 +13,20 @@ Typical folder layout to start from (e.g. create the IOT folder in the home fold
      ~/IOT
      
 clone in this folder:
-git clone https://github.com/openconnectivity/IOTivity-setup.git
+
+```git clone https://github.com/openconnectivity/IOTivity-setup.git```
      
-     This command will give the next folder structure :
+This command will give the next folder structure :
      
      ~/IOT
         |-IOTivity-setup 
     
-From this folder run the scripts (in order):
+From the IOTivity-setup folder run the scripts (in order):
 - install_IOTivity.sh
 - install_DeviceBuilder.sh
 - install_MRAA.sh
 
-e.g. exectute in the ~/IOT folder: sh install_<>.sh
+e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
 
 
 Folder structure after everything is installed:
@@ -48,31 +47,40 @@ Folder structure after everything is installed:
             |-- core             core resource definitions (in swagger)
             |-- IOTDataModels    oneIOTa resource definitions (in swagger)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
+			|-- IOTivity-setup   This repo, not used anymore after everyting is installed.
 			|-- device_output    The output of device builder.
 			|         |
             |	      |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
-            | gen.sh             generation command to convert the input-lightdevice.json in to code
+            | gen.sh             generation command to convert the example.json in to code
             | build.sh           building the generated code
             | run.sh             run the generated code
             | reset.sh           reset the device to ready for onboarding state.
+			| example.json       the input for device builder.
         
-				
+		
+The installDeviceBuilder script generates scripts in the folder above this repo.
+These scripts are convienent scripts, e.g. they are short cuts for entering generation, build, excute and reset commands.
+
 
 #### linux/ubuntu as executable environment
-Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the pi board.
-if one wants to use linux (ubuntu PC) as execution platform then add the linux as argument on the commandline:
+Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the raspberry pi board.
+if one wants to use linux (ubuntu PC) as execution platform then add ```linux``` as argument on the commandline:
 ```sh install_DeviceBuilder.sh linux```
+This make sure that all convienent scripts will use the linux target/paths.
     
 # gen.sh
-This script runs the DeviceBuilder with the correct arguments.
-running this script generates the device_output folder AND copies the result to the correct folder in the iotivity tree structure.
+This script runs the DeviceBuilder with the arguments:
+- ~IOT/example.json as input file
+- light device as device type
+
+Running this script generates the device_output folder AND copies the result to the correct folder in the iotivity tree structure.
 copied:
-- server.cpp to simpleserver.cpp in the resource/example folder
-- introspection file to the output directory
-- security file to the output directory
+- server.cpp to simpleserver.cpp in the examples/OCFDeviceBuilder folder
+- introspection file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
+- security file to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 
 # build.sh
-This script builds the resource/examples by means of scons.
+This script builds the examples/OCFDeviceBuilder by means of scons.
 e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
 
 # run.sh
@@ -89,7 +97,8 @@ note that the executable needs to be started in that directory to avoid issues w
 
 
 # reset.sh
-This script overwrites the security file from the device_output folder.
+This script overwrites the security file from the device_output folder to the 
+out/linux/$ARCH/release/examples/OCFDeviceBuilder folder.
 
 Execute this command only when the device is not running.
 The device will go to the ready for onboarding state.
