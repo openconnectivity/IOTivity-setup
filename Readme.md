@@ -33,21 +33,30 @@ e.g. exectute in the ~/IOT folder: sh install_<>.sh
 Folder structure after everything is installed:
         
         ~/IOT        
-            |-- iotivity         IOTivity source code
             |-- DeviceBuilder    The device builder tool chain
+			|-- iotivity         IOTivity source code
+			|        | 
+			|		 |-- examples
+			|		 |		|
+			|		 |		|- OCFDeviceBuilder   The folder with the project to build.
+			|        |-- out
+			|             |-- linux
+			|                   |-- x86_64/release/examples/OCFDeviceBuilder  - ubuntu executable folder
+			|                   |-- armv7l/release/examples/OCFDeviceBuilder  - pi executable folder
+			|
             |-- swagger2x        swagger2x code generation
             |-- core             core resource definitions (in swagger)
             |-- IOTDataModels    oneIOTa resource definitions (in swagger)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
+			|-- device_output    The output of device builder.
+			|         |
+            |	      |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
             | gen.sh             generation command to convert the input-lightdevice.json in to code
             | build.sh           building the generated code
             | run.sh             run the generated code
             | reset.sh           reset the device to ready for onboarding state.
         
-        after running gen.sh the generated code will be in : 
-        ~/IOT        
-            |-- device_output
-        
+				
 
 #### linux/ubuntu as executable environment
 Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the pi board.
@@ -64,21 +73,42 @@ copied:
 
 # build.sh
 This script builds the resource/examples by means of scons.
+e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
 
 # run.sh
 This script goes to the folder where the executable resides and starts it.
 
+e.g. goes to (linux)
+./iotivity/out/linux/x86_64/release/examples/OCFDeviceBuilder
+
+e.g. goes to (pi)
+./iotivity/out/linux/armv7l/release/examples/OCFDeviceBuilder
+
+and starts the executable from that directory.
+note that the executable needs to be started in that directory to avoid issues with reading the security and introspection files.
+
+
 # reset.sh
-This script overwrites the security file from the device_output folder
+This script overwrites the security file from the device_output folder.
+
+Execute this command only when the device is not running.
+The device will go to the ready for onboarding state.
 
 
 
-# SConscript
+# SConscript and SConstruct
 
-The scon script to overwrite it the folder:
+SConstruct 
 
-```iotivity/examples/OCFSecure```
+Sconstruct is the main build file.
+An addition is made to add the example/OCFDeviceBuilder target.
+
+SConscript
+
+The scon script to build the (generated) server it the folder:
+
+```iotivity/examples/OCFDeviceBuilder```
 
 This build script will:
-- have all includes to build the C++ example 
+- have all includes to build the C++ server code 
 - MRAA linkage
