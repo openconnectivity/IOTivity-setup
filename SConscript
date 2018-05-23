@@ -111,7 +111,8 @@ client_dev = samples_env.Install(
 server_dat = samples_env.Install(
     build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_server.dat')
 
-list_of_samples = [client, client_dat, client_dev, server, server_dat]
+#list_of_samples = [client, client_dat, client_dev, server, server_dat]
+list_of_samples = [server, server_dat]
 
 Alias("secureExampels", list_of_samples)
 
