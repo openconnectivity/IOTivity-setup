@@ -114,6 +114,6 @@ server_dat = samples_env.Install(
 #list_of_samples = [client, client_dat, client_dev, server, server_dat]
 list_of_samples = [server, server_dat]
 
-Alias("secureDeviceBuilder", list_of_samples)
+Alias("OCFDeviceBuilder", list_of_samples)
 
-env.AppendTarget('secureDeviceBuilder')
+env.AppendTarget('OCFDeviceBuilder')
