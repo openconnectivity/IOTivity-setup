@@ -5,6 +5,7 @@ The scripts setup the next repos (from git) in the folders:
 - iotivity (IOTivity 1.3.1)
 - DeviceBuilder (latest version)
 - mraa (MRAA library to interact with HW)
+
 All repos are being set up 1 level above the folder of IOTivity-setup folder.
 
 Typical folder layout to start from (e.g. create the IOT folder in the home folder)
@@ -33,31 +34,39 @@ Folder structure after everything is installed:
         
         ~/IOT        
             |-- DeviceBuilder    The device builder tool chain
-			|-- iotivity         IOTivity source code
-			|        | 
-			|		 |-- examples
-			|		 |		|
-			|		 |		|- OCFDeviceBuilder   The folder with the project to build.
-			|        |-- out
-			|             |-- linux
-			|                   |-- x86_64/release/examples/OCFDeviceBuilder  - ubuntu executable folder
-			|                   |-- armv7l/release/examples/OCFDeviceBuilder  - pi executable folder
-			|
+            |-- iotivity         IOTivity source code
+            |        | 
+            |        |-- examples
+            |        |        |
+            |        |        |- OCFDeviceBuilder   The folder with the project to build.
+            |        |
+            |        |-- out
+            |             |-- linux
+            |                   |-- x86_64/release/examples/OCFDeviceBuilder  - ubuntu executable folder
+            |                   |-- armv7l/release/examples/OCFDeviceBuilder  - pi executable folder
+            |
             |-- swagger2x        swagger2x code generation
             |-- core             core resource definitions (in swagger)
             |-- IOTDataModels    oneIOTa resource definitions (in swagger)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
-			|-- IOTivity-setup   This repo, not used anymore after everyting is installed.
-			|-- device_output    The output of device builder.
-			|         |
-            |	      |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
-            | gen.sh             generation command to convert the example.json in to code
-            | build.sh           building the generated code
-            | run.sh             run the generated code
-            | reset.sh           reset the device to ready for onboarding state.
-			| example.json       the input for device builder.
+            |-- IOTivity-setup   This repo, not used anymore after everyting is installed.
+            |-- device_output    The output of device builder.
+            |         |
+            |         |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
+            |
+            |- gen.sh            generation command to convert the example.json in to code
+            |- build.sh          building the generated code
+            |- run.sh            run the generated code
+            |- reset.sh          reset the device to ready for onboarding state.
+            |- example.json      the input for device builder.
+            
+			
+         legenda:  folder
+		              |-- folder
+                      |- file
+
         
-		
+        
 The installDeviceBuilder script generates scripts in the folder above this repo.
 These scripts are convienent scripts, e.g. they are short cuts for entering generation, build, excute and reset commands.
 
@@ -84,16 +93,17 @@ This script builds the examples/OCFDeviceBuilder by means of scons.
 e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
 
 # run.sh
-This script goes to the folder where the executable resides and starts it.
+This script executes the executable in the folder where the executable resides in.
 
-e.g. goes to (linux)
+linux executes in folder:
+
 ./iotivity/out/linux/x86_64/release/examples/OCFDeviceBuilder
 
-e.g. goes to (pi)
+pi executes in folder:
+
 ./iotivity/out/linux/armv7l/release/examples/OCFDeviceBuilder
 
-and starts the executable from that directory.
-note that the executable needs to be started in that directory to avoid issues with reading the security and introspection files.
+note that the executable needs to be started in folder where it recides to avoid issues with reading the security and introspection files.
 
 
 # reset.sh
