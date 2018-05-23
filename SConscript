@@ -101,7 +101,7 @@ if target_os in ['linux']:
 ######################################################################
 # Source files and Targets
 ######################################################################
-client = samples_env.Program('client', ['client.c'])
+#client = samples_env.Program('client', ['client.c'])
 server = samples_env.Program('server', ['server.cpp'])
 examples_dir = '/examples/OCFSecure/'
 client_dat = samples_env.Install(
