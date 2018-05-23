@@ -108,11 +108,11 @@ examples_dir = '/examples/OCFDeviceBuilder/'
 #    build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_client.dat')
 #client_dev = samples_env.Install(
 #    build_dir + examples_dir, src_dir + examples_dir + 'device_properties.dat')
-server_dat = samples_env.Install(
-    build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_server.dat')
+#server_dat = samples_env.Install(
+#    build_dir + examples_dir, src_dir + examples_dir + 'ocf_svr_db_server.dat')
 
 #list_of_samples = [client, client_dat, client_dev, server, server_dat]
-list_of_samples = [server, server_dat]
+list_of_samples = [server]
 
 Alias("OCFDeviceBuilder", list_of_samples)
 
