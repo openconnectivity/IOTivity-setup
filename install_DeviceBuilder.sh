@@ -83,6 +83,8 @@ echo "making the example directory"
 mkdir -p ../iotivity/examples/${code_path}
 # add the build file
 cp ./SConscript ../iotivity/examples/${code_path}/SConscript 
+# add the build dir
+cp ./SConstruct ../iotivity/.
 
 
 
