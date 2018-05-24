@@ -58,8 +58,8 @@ Folder structure after everything is installed:
             |- build.sh          building the generated code
             |- run.sh            run the generated code
             |- reset.sh          reset the device to ready for onboarding state.
+            |- edit_code.sh    edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
             |- example.json      the input for device builder.
-            |- edit_code.json    edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
 			
             
 			
