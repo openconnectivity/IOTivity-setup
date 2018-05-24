@@ -56,7 +56,8 @@ echo "if [[ ! -e ../iotivity/out/linux/${ARCH}/release/examples/${code_path} ]];
 echo "mkdir ../iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> gen.sh
 echo "fi" >> gen.sh
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
-echo "cp ../device_output/code/oic_svr_db_server_mvjustworks.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+echo "#cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> gen.sh
+echo "cp ./IOTivity-setup/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
 echo "cd .." >> gen.sh
 
 # create the build script
@@ -82,7 +83,8 @@ echo "CURPWD=`pwd`"> reset.sh
 echo "if [[ ! -e ../iotivity/out/linux/${ARCH}/release/examples/${code_path} ]]; then" >> reset.sh
 echo "mkdir -p ../iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> reset.sh
 echo "fi" >> reset.sh
-echo "cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
+echo "#cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
+echo "cp ./IOTivity-setup/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
 echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
