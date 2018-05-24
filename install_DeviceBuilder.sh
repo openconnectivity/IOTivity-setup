@@ -83,8 +83,8 @@ echo "CURPWD=`pwd`"> reset.sh
 echo "if [[ ! -e ./iotivity/out/linux/${ARCH}/release/examples/${code_path} ]]; then" >> reset.sh
 echo "mkdir -p ./iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> reset.sh
 echo "fi" >> reset.sh
-echo "#cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
-echo "cp ./IOTivity-setup/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "#cp ../device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
+echo "cp ./IOTivity-setup/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
 echo "cd $CURPWD" >> reset.sh
 
 cd $CURPWD
