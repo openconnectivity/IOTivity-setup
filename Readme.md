@@ -88,6 +88,16 @@ copied:
 - introspection file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 - security file to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 
+# edit_code.sh
+This scripts edits the code with nano.
+Nano is supplied on various linux systems like ubuntu and pi.
+The file being edited is the file in iotivity tree.
+so please make sure when generating a new version, that a changed file is saved under a different name.
+
+nano beginners guide:
+
+https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/
+
 # build.sh
 This script builds the examples/OCFDeviceBuilder by means of scons.
 e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
