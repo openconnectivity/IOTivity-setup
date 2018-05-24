@@ -66,7 +66,7 @@ echo "scons examples/${code_path}" >> build.sh
 echo "cd .." >> build.sh
 
 # create the edit script
-echo "nano ../iotivity/examples/${code_path}/server.cpp" > edit_code.sh
+echo "nano ./iotivity/examples/${code_path}/server.cpp" > edit_code.sh
 
 # create the run script
 echo "CURPWD=`pwd`"> run.sh
