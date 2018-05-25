@@ -30,9 +30,9 @@ echo "1=$a "
 # supplied tocbor on the command line, overwrite the ../device_output/code/server_security.dat file
 if [ "$a" = "$b" ]; then
 mkdir -p ../device_output/code >/dev/null 2>&1
-python3 ../iotivity-tool/cbor2json.py -i  SVR-OCF1.3-Server.json -o ../device_output/code/server_security.dat
+python3 ../iotivity-tool/cborjsoncon.py -i  SVR-OCF1.3-Server.json -o ../device_output/code/server_security.dat
 fi
 
 if [ "$a" = "$c" ]; then
-python3 ../iotivity-tool/cbor2json.py -i ../device_output/code/server_security.dat -o ../device_output/code/server_security.dat.json 
+python3 ../iotivity-tool/cborjsoncon.py -i ../device_output/code/server_security.dat -o ../device_output/code/server_security.dat.json 
 fi
