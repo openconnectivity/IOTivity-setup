@@ -88,7 +88,7 @@ Running this script generates the device_output folder AND copies the result to 
 copied:
 - server.cpp to simpleserver.cpp in the examples/OCFDeviceBuilder folder
 - introspection file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
-- security file to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
+- security file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 
 # edit_code.sh
 This scripts edits the code with nano.
@@ -119,12 +119,28 @@ note that the executable needs to be started in folder where it recides to avoid
 
 
 # reset.sh
-This script overwrites the security file from the device_output folder to the 
+This script overwrites the SVR settings in the security file from the device_output folder to the 
 out/linux/$ARCH/release/examples/OCFDeviceBuilder folder.
 
-Execute this command only when the device is not running.
+Note execute this command only when the device is not running.
 The device will go to the ready for onboarding state.
 
+### svr2cbor.sh (advanced usage)
+This script is run once during setup by install_DeviceBuilder.sh.
+It converts the SVR-OCF1.3-Server.json security json file into cbor.
+This file contains the default settings for the SVRs for an OCF1.3 device.
+
+When running the script the result (server_security.dat) will be placed in ../device_output/code.
+The script can also be used to convert the ../device_output/code/security.dat file back to json.
+When converting the dat back to json the result will be placed ../device_output/code/security.dat.json
+This is done to avoid overwriting the default SVR settings.
+Note that one has to edit the SVR-OCF1.3-Server.json to get a different file installed.
+
+The commands to do the conversions: (to be excuted in the IOTivity-setup folder)
+
+to convert SVR-OCF1.3-Server.json to cbor: ```sh svr2cbor.sh tocbor```
+
+to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson```
 
 
 # SConscript and SConstruct

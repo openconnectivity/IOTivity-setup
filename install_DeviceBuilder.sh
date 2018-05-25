@@ -46,6 +46,10 @@ git clone https://github.com/openconnectivityfoundation/DeviceBuilder.git
 # get the initial example 
 cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json example.json
 
+# clone the iotivity cbor conversion tool 
+git clone https://github.com/alshafi/iotivity-tool.git
+# create the initial security file and place it in the code directory.
+sh svr2cbor.sh tocbor
 
 # create the generation script
 echo "#!/bin/bash" > gen.sh
@@ -54,8 +58,7 @@ echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output 
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/${code_path}/server.cpp " >> gen.sh
 echo "mkdir -p ../iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> gen.sh
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
-echo "#cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> gen.sh
-echo "cp ../IOTivity-setup/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+echo "cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
 echo "cd .." >> gen.sh
 
 # create the build script
@@ -79,8 +82,7 @@ echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "#!/bin/bash"> reset.sh
 echo "mkdir -p ./iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> reset.sh
-echo "#cp ../device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
-echo "cp ./IOTivity-setup/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "cp ../device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/resource/examples/server_security.dat" >> reset.sh
 
 
 cd $CURPWD
