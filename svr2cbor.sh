@@ -24,7 +24,7 @@ set -x #echo on
 
 a=$1
 b="tocbor"
-d="tojson"
+c="tojson"
 
 echo "1=$a "
 # supplied tocbor on the command line, overwrite the ../device_output/code/server_security.dat file
