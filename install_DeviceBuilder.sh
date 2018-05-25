@@ -49,7 +49,9 @@ cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json e
 # clone the iotivity cbor conversion tool 
 git clone https://github.com/alshafi/iotivity-tool.git
 # create the initial security file and place it in the code directory.
+cd $CURPWD
 sh svr2cbor.sh tocbor
+cd ..
 
 # create the generation script
 echo "#!/bin/bash" > gen.sh
