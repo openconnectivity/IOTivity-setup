@@ -60,11 +60,11 @@ Folder structure after everything is installed:
             |- reset.sh          reset the device to ready for onboarding state.
             |- edit_code.sh    edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
             |- example.json      the input for device builder.
-			
             
-			
+            
+            
          legenda:  folder
-		              |-- folder
+                      |-- folder
                       |- file
 
         
@@ -79,7 +79,53 @@ if one wants to use linux (ubuntu PC) as execution platform then add ```linux```
 ```sh install_DeviceBuilder.sh linux```
 This make sure that all convienent scripts will use the linux target/paths.
     
-# gen.sh
+    
+# development flow  
+
+The development flow is depicted the figure below:
+
+                     start
+                       |
+                       v
+                 --------------
+                |              |
+                |    gen.sh    |
+                |              |
+                 --------------
+                       |
+                       | initial code
+                       v             
+                 --------------      
+                |              |     
+                | edit_code.sh |<--------
+                |              |         |
+                 --------------          |
+                       |                 |
+                       | changed code    |
+                       v                 |
+                 --------------          |
+                |              |  build  |
+                |   build.sh   |----->---|
+                |              |  failed |
+                 --------------          |
+                       |                 |
+                       | ok              |
+                       v                 |
+                 --------------          |
+      run       |              | modify  |
+      --------->|    run.sh    |---------
+      clients   |              | behaviour
+      against    --------------
+      application      |
+                       v
+                    finished
+                 
+        Note: if gen.sh is run again, the generated code is overwritten.
+        e.g. before running that tool again, safe the file in the iotivivty tree to another name 
+        if one wants to keep that code as reference
+
+    
+## gen.sh
 This script runs the DeviceBuilder with the arguments:
 - ~IOT/example.json as input file
 - light device as device type
@@ -90,7 +136,7 @@ copied:
 - introspection file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 - security file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 
-# edit_code.sh
+## edit_code.sh
 This scripts edits the code with nano.
 Nano is supplied on various linux systems like ubuntu and pi.
 The file being edited is the file in iotivity tree.
@@ -100,11 +146,11 @@ nano beginners guide:
 
 https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/
 
-# build.sh
+## build.sh
 This script builds the examples/OCFDeviceBuilder by means of scons.
 e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
 
-# run.sh
+## run.sh
 This script executes the executable in the folder where the executable resides in.
 
 linux executes in folder:
