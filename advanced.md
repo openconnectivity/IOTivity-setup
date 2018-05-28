@@ -1,15 +1,18 @@
 # Advanced usage
+Scripts that are intended for usage after initial setup.
 
 # update_repos.sh
-This script updates the: 
+The update_repos.sh script updates the: 
 - tooling repos
 - datamodels repos
 
-does NOT update repos:
+The script does NOT update the code repos:
 - iotivity
 - mraa
+The code repo iotivity is pulled at start up with a specific version.
+To get a fresh copy, delete the folder and rerun the install_IOTivity.sh script.
 
-### security 
+# security 
 svr2cbor.sh (advanced usage)
 
 This script is run once during setup by install_DeviceBuilder.sh.
