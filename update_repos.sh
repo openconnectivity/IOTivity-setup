@@ -50,7 +50,7 @@ cd ../core
 git pull
 cd $CURPWD
 
-cd ../IOTDataModels
+cd ../IoTDataModels
 # clone the repo
 git pull
 cd $CURPWD
