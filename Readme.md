@@ -37,9 +37,11 @@ Folder structure after everything is installed:
             |-- DeviceBuilder    The device builder tool chain
             |-- device_output    The output of device builder.
             |         |
-            |         |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
+            |         |-- code   The generated code, the files will be copied to folder iotivity/examples/OCFDeviceBuilder
             |               |- PICS file
             |               |- server.cpp
+            |               |- server_security.dat       SVR data
+            |               |- server_introspection.dat  introspection device data
             |
             |-- iotivity         IOTivity source code
             |        | 
@@ -49,19 +51,15 @@ Folder structure after everything is installed:
             |        |                  |- server.cpp  file that is being build and edited.
             |        |
             |        |-- out
-            |             |-- linux
-            |                   |-- x86_64/release/examples/OCFDeviceBuilder   ubuntu executable folder
-            |                                                     |- server                    executable
-            |                                                     |- server_security.dat       SVR data
-            |                                                     |- server_introspection.dat  introspection device data
-            |                   |-- armv7l/release/examples/OCFDeviceBuilder   pi executable folder
-            |                                                     |- server                    executable
-            |                                                     |- server_security.dat       SVR data
-            |                                                     |- server_introspection.dat  introspection device data
-            |
+            |             |-- linux          ARCH=x86_64:Ubuntu, ARCH=armv71:pi
+            |                   |-- ARCH/release/examples/OCFDeviceBuilder   executable folder (architecture in path)
+            |                                                    |- server                    executable
+            |                                                    |- server_security.dat       SVR data
+            |                                                    |- server_introspection.dat  introspection device data
+            |                   
             |-- IOTDataModels    oneIOTa resource definitions (in swagger)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
-            |-- IOTivity-setup   This repo, not used anymore after everyting is installed.
+            |-- IOTivity-setup   This repo.
             |-- iotivity-tool    Tool to convert the SVR json in to cbor (and visa versa)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
             |-- swagger2x        swagger2x code generation
@@ -69,7 +67,7 @@ Folder structure after everything is installed:
             |- build.sh          building the generated code
             |- run.sh            run the generated code
             |- reset.sh          reset the device to ready for onboarding state.
-            |- edit_code.sh     edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
+            |- edit_code.sh      edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
             |- example.json      the input for device builder.
             
             
