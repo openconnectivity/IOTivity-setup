@@ -54,9 +54,9 @@ Folder structure after everything is installed:
         |        |-- out
         |             |-- linux                          ARCH=x86_64:Ubuntu, ARCH=armv71:pi
         |                   |-- <ARCH>/release/examples/OCFDeviceBuilder   executable folder
-        |                                                |- server                    executable
-        |                                                |- server_security.dat       SVR data
-        |                                                |- server_introspection.dat  introspection device data
+        |                                                 |- server                    executable
+        |                                                 |- server_security.dat       SVR data
+        |                                                 |- server_introspection.dat  introspection device data
         |                   
         |-- IOTDataModels    oneIOTa resource definitions (in swagger)
         |-- mraa             MRAA library to talk to HW attached to the pi boards
