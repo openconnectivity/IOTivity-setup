@@ -33,38 +33,49 @@ e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
 Folder structure after everything is installed:
         
         ~/IOT        
+            |-- core             core resource definitions (in swagger) 
             |-- DeviceBuilder    The device builder tool chain
+            |-- device_output    The output of device builder.
+            |         |
+            |         |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
+            |               |- PICS file
+            |               |- server.cpp
+            |
             |-- iotivity         IOTivity source code
             |        | 
             |        |-- examples
             |        |        |
             |        |        |- OCFDeviceBuilder   The folder with the project to build.
+            |        |                  |- server.cpp  file that is being build and edited.
             |        |
             |        |-- out
             |             |-- linux
-            |                   |-- x86_64/release/examples/OCFDeviceBuilder  - ubuntu executable folder
-            |                   |-- armv7l/release/examples/OCFDeviceBuilder  - pi executable folder
+            |                   |-- x86_64/release/examples/OCFDeviceBuilder   ubuntu executable folder
+            |                                                     |- server                    executable
+            |                                                     |- server_security.dat       SVR data
+            |                                                     |- server_introspection.dat  introspection device data
+            |                   |-- armv7l/release/examples/OCFDeviceBuilder   pi executable folder
+            |                                                     |- server                    executable
+            |                                                     |- server_security.dat       SVR data
+            |                                                     |- server_introspection.dat  introspection device data
             |
-            |-- swagger2x        swagger2x code generation
-            |-- core             core resource definitions (in swagger)
             |-- IOTDataModels    oneIOTa resource definitions (in swagger)
             |-- mraa             MRAA library to talk to HW attached to the pi boards
             |-- IOTivity-setup   This repo, not used anymore after everyting is installed.
-            |-- device_output    The output of device builder.
-            |         |
-            |         |-- code   The generated code, the files will be copied to iotivity/examples/OCFDeviceBuilder
-            |
+            |-- iotivity-tool    Tool to convert the SVR json in to cbor (and visa versa)
+            |-- mraa             MRAA library to talk to HW attached to the pi boards
+            |-- swagger2x        swagger2x code generation
             |- gen.sh            generation command to convert the example.json in to code
             |- build.sh          building the generated code
             |- run.sh            run the generated code
             |- reset.sh          reset the device to ready for onboarding state.
-            |- edit_code.sh    edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
+            |- edit_code.sh     edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
             |- example.json      the input for device builder.
-            
             
             
          legenda:  folder
                       |-- folder
+                      |-- folder/subfolder
                       |- file
 
         
@@ -101,11 +112,11 @@ The development flow is depicted the figure below:
                 |              |         |
                  --------------          |
                        |                 |
-                       | changed code    |
+                       | edited code     |
                        v                 |
                  --------------          |
                 |              |  build  |
-                |   build.sh   |----->---|
+                |   build.sh   |---->----|
                 |              |  failed |
                  --------------          |
                        |                 |
@@ -113,7 +124,7 @@ The development flow is depicted the figure below:
                        v                 |
                  --------------          |
       run       |              | modify  |
-      --------->|    run.sh    |---------
+      --------->|    run.sh    |---->----
       clients   |              | behaviour
       against    --------------
       application      |
