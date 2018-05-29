@@ -39,7 +39,6 @@ Folder structure after everything is installed:
         |         |
         |         |-- code   The generated code.
         |               |    the files will be copied to folder iotivity/examples/OCFDeviceBuilder
-        |               |- PICS file
         |               |- server.cpp
         |               |- server_security.dat       SVR data
         |               |- server_introspection.dat  introspection device data
