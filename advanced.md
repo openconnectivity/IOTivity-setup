@@ -38,7 +38,8 @@ to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson`
     
     install_DeviceBuilder.sh    
     
-               IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat (using svr2cbor.sh tocbor)
+               currently ignored << IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat (using svr2cbor.sh tocbor) >>
+               ../device_output/code/oic_svr_db_server_mvjustworks.dat  --- copy --->   ../device_output/code/server_security.dat
                ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
                
     reset.sh
