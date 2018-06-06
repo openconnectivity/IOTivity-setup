@@ -82,6 +82,12 @@ The installDeviceBuilder script generates scripts in the folder above this repo.
 These scripts are convienent scripts, e.g. they are short cuts for entering generation, build, excute and reset commands.
 
 
+| repo  |  location |
+| DeviceBuilder | https://github.com/openconnectivityfoundation/DeviceBuilder |
+| IOTivity | https://iotivity.org/ |
+| MRAA  | https://iotdk.intel.com/docs/master/mraa/ |
+
+
 #### linux/ubuntu as executable environment
 Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the raspberry pi board.
 if one wants to use linux (ubuntu PC) as execution platform then add ```linux``` as argument on the commandline:
