@@ -42,6 +42,8 @@ to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson`
                ../device_output/code/oic_svr_db_server_mvjustworks.dat  --- copy --->   ../device_output/code/server_security.dat
                ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
                
+    gen.sh 
+               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
     reset.sh
                ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
                
