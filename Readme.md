@@ -192,3 +192,8 @@ out/linux/$ARCH/release/examples/OCFDeviceBuilder folder.
 Note execute this command only when the device is not running.
 The device will go to the ready for onboarding state.
 
+
+
+# advanced usage
+
+see https://github.com/openconnectivity/IOTivity-setup/blob/master/advanced.md

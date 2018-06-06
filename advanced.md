@@ -13,16 +13,18 @@ The code repo iotivity is pulled at start up with a specific version.
 To get a fresh copy, delete the folder and rerun the install_IOTivity.sh script.
 
 # security 
-svr2cbor.sh (advanced usage)
+svr2cbor.sh 
 
 This script is run once during setup by install_DeviceBuilder.sh.
 It converts the SVR-OCF1.3-Server.json security json file into cbor.
 This file contains the default settings for the SVRs for an OCF1.3 device.
 
 When running the script the result (server_security.dat) will be placed in ../device_output/code.
-The script can also be used to convert the ../device_output/code/security.dat file back to json.
-When converting the dat back to json the result will be placed ../device_output/code/security.dat.json
+The script can also be used to convert the ../device_output/code/server_security.dat file back to json.
+When converting the dat back to json the result will be placed ../device_output/code/server_security.dat.json (appending .json).
 This is done to avoid overwriting the default SVR settings.
+
+
 Note that one has to edit the SVR-OCF1.3-Server.json to get a different file installed.
 
 The commands to do the conversions: (to be excuted in the IOTivity-setup folder)
@@ -30,6 +32,23 @@ The commands to do the conversions: (to be excuted in the IOTivity-setup folder)
 to convert SVR-OCF1.3-Server.json to cbor: ```sh svr2cbor.sh tocbor```
 
 to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson```
+
+    
+    script     action on the security file.
+    
+    install_DeviceBuilder.sh    
+    
+               IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat (using svr2cbor.sh tocbor)
+               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
+               
+    reset.sh
+               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
+               
+    svr2cbor.sh tocbor
+               IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat
+    
+    svr2cbor.sh tojson
+               ../device_output/code/server_security.dat  --converts-->   ../device_output/code/server_security.dat.json
 
 
 # SConscript and SConstruct
