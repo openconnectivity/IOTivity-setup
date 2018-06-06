@@ -82,11 +82,13 @@ The installDeviceBuilder script generates scripts in the folder above this repo.
 These scripts are convienent scripts, e.g. they are short cuts for entering generation, build, excute and reset commands.
 
 
-| repo  |  location |
-| ----- | ------|
-| DeviceBuilder | https://github.com/openconnectivityfoundation/DeviceBuilder |
-| IOTivity | https://iotivity.org/ |
-| MRAA  | https://iotdk.intel.com/docs/master/mraa/ |
+| repo  |  description | location |
+| ----- | ----- | -------|
+| DeviceBuilder |  tool chain  | https://github.com/openconnectivityfoundation/DeviceBuilder |
+| swagger2x |  code generation  | https://github.com/openconnectivityfoundation/swagger2x |
+| iotivity-tool |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
+| IOTivity     |  C++ code (v1.3.1)     | https://iotivity.org/ |
+| MRAA          |  communication abstracting hardware   | https://iotdk.intel.com/docs/master/mraa/ |
 
 
 #### linux/ubuntu as executable environment
