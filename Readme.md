@@ -83,6 +83,7 @@ These scripts are convienent scripts, e.g. they are short cuts for entering gene
 
 
 | repo  |  location |
+| ----- | ------|
 | DeviceBuilder | https://github.com/openconnectivityfoundation/DeviceBuilder |
 | IOTivity | https://iotivity.org/ |
 | MRAA  | https://iotdk.intel.com/docs/master/mraa/ |
