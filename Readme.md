@@ -211,3 +211,7 @@ The device will go to the ready for onboarding state.
 # advanced usage
 
 see https://github.com/openconnectivity/IOTivity-setup/blob/master/advanced.md
+
+# Device Builder OCF developer kit info
+
+https://github.com/openconnectivity/IOTivity-setup/tree/master/pi-boards
