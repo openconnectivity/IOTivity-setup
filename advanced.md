@@ -54,6 +54,20 @@ to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson`
                ../device_output/code/server_security.dat  --converts-->   ../device_output/code/server_security.dat.json
 
 
+more info about security:   
+            
+https://github.com/iotivity/iotivity/blob/master/resource/csdk/security/README-building-and-running-secure-IoTivity-stack.txt
+       
+more about provisioning
+
+https://github.com/iotivity/iotivity/tree/master/resource/csdk/security/provisioning
+       
+
+security sample files:
+
+https://github.com/iotivity/iotivity/tree/master/resource/csdk/security/provisioning/sample
+               
+               
 # SConscript and SConstruct
 
 SConstruct 
