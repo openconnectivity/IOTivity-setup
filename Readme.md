@@ -90,7 +90,7 @@ referenced information:
 | swagger2x |  code generation  | https://github.com/openconnectivityfoundation/swagger2x |
 | iotivity-tool |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
 | IOTivity     |  C++ code (v1.3.1)     | https://iotivity.org/ |
-| MRAA          |  code library, communication abstracting hardware   | https://iotdk.intel.com/docs/master/mraa/ |
+| MRAA          |  code library, communication abstracting hardware   | https://github.com/intel-iot-devkit/mraa.git |
 | IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/OpenInterConnect/IoTDataModels |
 | core          |  OCF core data models  | https://github.com/openconnectivityfoundation/core |
 
