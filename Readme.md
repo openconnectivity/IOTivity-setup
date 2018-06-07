@@ -116,9 +116,9 @@ The development flow is depicted the figure below:
               |              |
                --------------
                      |
-                     | initial code
-                     v             
-               --------------      
+                     | initial code        --- in iotivity tree, to build
+                     v                     --- introspection/security files 
+               --------------                  in the iotivity executable folder
               |              |     
               | edit_code.sh |<--------
               |              |         |
@@ -136,9 +136,9 @@ The development flow is depicted the figure below:
                      v                 |
                --------------          |
     run       |              | modify  |
-    --------->|    run.sh    |---->----
-    clients   |              | behaviour
-    against    --------------
+    --------->|    run.sh    |---->----      --- onboarding will change the security file 
+    clients   |              | behaviour         in the executable folder
+    against    --------------                    to refresh/reset the security file execute reset.sh
     application      |
                      v
                   finished
@@ -164,8 +164,9 @@ the next mechanisms are available to change the device type:
 	- can be done when no code has been changed yet.
 
 
-Running this script generates the device_output folder AND copies the result to the correct folder in the iotivity tree structure.
-copied:
+Running this script generates the device_output folder AND copies the result to the correct executable folder in the iotivity tree structure.
+
+copied to the executable folder from the device:
 - server.cpp to simpleserver.cpp in the examples/OCFDeviceBuilder folder
 - introspection file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory
 - security file (in CBOR format) to the out/linux/$ARCH/release/examples/OCFDeviceBuilder directory

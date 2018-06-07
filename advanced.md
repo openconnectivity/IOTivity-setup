@@ -34,24 +34,18 @@ to convert SVR-OCF1.3-Server.json to cbor: ```sh svr2cbor.sh tocbor```
 to convert ../device_output/code/security.dat to json: ```sh svr2cbor.sh tojson```
 
     
-    script     action on the security file.
-    
-    install_DeviceBuilder.sh    
-    
-               currently ignored << IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat (using svr2cbor.sh tocbor) >>
-               ../device_output/code/oic_svr_db_server_mvjustworks.dat  --- copy --->   ../device_output/code/server_security.dat
-               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
-               
-    gen.sh 
-               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
-    reset.sh
-               ../device_output/code/server_security.dat  --- copy --->   ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat
-               
-    svr2cbor.sh tocbor
-               IOTivity-setup/SVR-OCF1.3-Server.json      --converts-->   ../device_output/code/server_security.dat
-    
-    svr2cbor.sh tojson
-               ../device_output/code/server_security.dat  --converts-->   ../device_output/code/server_security.dat.json
+action per script
+
+| script  |  source | action  |   destination |
+| ------- | ----- | -------|
+|  install_DeviceBuilder.sh |  IOTivity-setup/SVR-OCF1.3-Server.json  | NA (convert disabled) | ../device_output/code/server_security.dat |
+|            |  ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat  | copy | ../device_output/code/server_security.dat |
+|            |  ../device_output/code/server_security.dat  | copy | ../device_output/code/server_security.dat |
+| gen.sh     |  ../device_output/code/server_security.dat | copy  | ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat |
+| reset.sh   |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
+| svr2cbor.sh tocbor    | IOTivity-setup/SVR-OCF1.3-Server.json  | converts    | ../device_output/code/server_security.dat |
+| svr2cbor.sh tojson    |  ../device_output/code/server_security.dat  | converts   | ../device_output/code/server_security.dat.json |
+
 
 
 more info about security:   
