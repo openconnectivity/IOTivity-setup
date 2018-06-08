@@ -41,7 +41,7 @@ note that the implementation needs to make the connection from the resource to t
 The file input-AutomationPhat.json is the DeviceBuilder input file for the
 the automation phat board.
 
-description (from the website):
+Description (from the website):
 
 We've pulled together a great set of features into this home monitoring and automation controller. 
 With a relay, analog channels, powered outputs, and buffered inputs (all 24V tolerant) you can now hook up a plethora of goodies to your Raspberry Pi all at once.
