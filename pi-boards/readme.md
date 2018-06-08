@@ -8,6 +8,8 @@ see also:  https://openconnectivity.org/developer-kit
 The file input-EnviroPhat.json is the DeviceBuilder input file for the
 the enviro-phat board.
 
+https://github.com/openconnectivity/IOTivity-setup/blob/master/pi-boards/input-EnviroPhat.json
+
 Description (from the website):
 
 Enviro pHAT packs 4 different sensors, letting you measure temperature, pressure, light level, colour, 3-axis motion, compass heading, and analog inputs.
@@ -40,6 +42,8 @@ note that the implementation needs to make the connection from the resource to t
 
 The file input-AutomationPhat.json is the DeviceBuilder input file for the
 the automation phat board.
+
+https://github.com/openconnectivity/IOTivity-setup/blob/master/pi-boards/input-AutomationPhat.json
 
 Description (from the website):
 
