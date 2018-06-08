@@ -18,7 +18,7 @@ https://shop.pimoroni.com/products/enviro-phat
 
 
 | path  |  rt | sensor/actuator |  resource | 
-| ----- | ----- | -------|
+| ----- | ----- | -------| -------|
 | /binaryswitch |  "oic.r.switch.binary"  |  actuator | https://oneiota.org/revisions/1393 |
 | /brightness |  "oic.r.light.brightness"  | sensor | https://oneiota.org/revisions/1393 |
 | /colourRGB |  "oic.r.colour.rgb"  | sensor  | https://oneiota.org/revisions/1797 |
@@ -54,7 +54,7 @@ https://shop.pimoroni.com/products/automation-phat
 
 
 | path  |  rt | sensor/actuator | resource | 
-| ----- | ----- | -------|
+| ----- | ----- | -------| -------|
 | /ADC1 |  "oic.r.energy.electrical"  |  sensor |  https://oneiota.org/revisions/2732 |
 | /ADC2 |  "oic.r.energy.electrical"  |  sensor |  https://oneiota.org/revisions/2732 |
 | /ADC3 |  "oic.r.energy.electrical"  |  sensor |  https://oneiota.org/revisions/2732 |
