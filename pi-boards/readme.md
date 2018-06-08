@@ -3,39 +3,6 @@
 
 see also:  https://openconnectivity.org/developer-kit
 
-## enviro phat board
-
-The file input-EnviroPhat.json is the DeviceBuilder input file for the
-the enviro-phat board.
-
-https://github.com/openconnectivity/IOTivity-setup/blob/master/pi-boards/input-EnviroPhat.json
-
-Description (from the website):
-
-Enviro pHAT packs 4 different sensors, letting you measure temperature, pressure, light level, colour, 3-axis motion, compass heading, and analog inputs.
-
-https://shop.pimoroni.com/products/enviro-phat
-
-
-| path  |  rt | sensor/actuator |  resource | 
-| ----- | ----- | -------| -------|
-| /binaryswitch |  "oic.r.switch.binary"  |  actuator | https://oneiota.org/revisions/1393 |
-| /brightness |  "oic.r.light.brightness"  | sensor | https://oneiota.org/revisions/1393 |
-| /colourRGB |  "oic.r.colour.rgb"  | sensor  | https://oneiota.org/revisions/1797 |
-| /temperature  | "oic.r.temperature"  | sensor | https://oneiota.org/revisions/2991 | 
-| /pressure          |  "oic.r.sensor.atmosphericpressure"    | sensor | https://oneiota.org/revisions/1387 |
-| /xmotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
-| /ymotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
-| /zmotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
-| /heading          |  "oic.r.sensor.magneticfielddirection"  | sensor | https://oneiota.org/revisions/2041 |
-| /voltage0          |  "oic.r.energy.electrical"  | sensor |  https://oneiota.org/revisions/2732 |
-| /voltage1          |  "oic.r.energy.electrical"  |sensor | https://oneiota.org/revisions/2732 |
-| /voltage2          |  "oic.r.energy.electrical"  | sensor | https://oneiota.org/revisions/2732 |
-| /voltage3          |  "oic.r.energy.electrical"  | sensor | https://oneiota.org/revisions/2732 |
-
-note that the implementation needs to make the connection from the resource to the actual hardware.
-
-
 
 ## automation phat board
 
@@ -72,3 +39,38 @@ https://shop.pimoroni.com/products/automation-phat
 
 
 note that the implementation needs to make the connection from the resource to the actual hardware.
+
+
+## enviro phat board
+
+The file input-EnviroPhat.json is the DeviceBuilder input file for the
+the enviro-phat board.
+
+https://github.com/openconnectivity/IOTivity-setup/blob/master/pi-boards/input-EnviroPhat.json
+
+Description (from the website):
+
+Enviro pHAT packs 4 different sensors, letting you measure temperature, pressure, light level, colour, 3-axis motion, compass heading, and analog inputs.
+
+https://shop.pimoroni.com/products/enviro-phat
+
+
+| path  |  rt | sensor/actuator |  resource | 
+| ----- | ----- | -------| -------|
+| /binaryswitch |  "oic.r.switch.binary"  |  actuator | https://oneiota.org/revisions/1393 |
+| /brightness |  "oic.r.light.brightness"  | sensor | https://oneiota.org/revisions/1393 |
+| /colourRGB |  "oic.r.colour.rgb"  | sensor  | https://oneiota.org/revisions/1797 |
+| /temperature  | "oic.r.temperature"  | sensor | https://oneiota.org/revisions/2991 | 
+| /pressure          |  "oic.r.sensor.atmosphericpressure"    | sensor | https://oneiota.org/revisions/1387 |
+| /xmotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
+| /ymotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
+| /zmotion  |  "oic.r.sensor.acceleration"  | sensor | https://oneiota.org/revisions/1381 |
+| /heading          |  "oic.r.sensor.magneticfielddirection"  | sensor | https://oneiota.org/revisions/2041 |
+| /voltage0          |  "oic.r.energy.electrical"  | sensor |  https://oneiota.org/revisions/2732 |
+| /voltage1          |  "oic.r.energy.electrical"  |sensor | https://oneiota.org/revisions/2732 |
+| /voltage2          |  "oic.r.energy.electrical"  | sensor | https://oneiota.org/revisions/2732 |
+| /voltage3          |  "oic.r.energy.electrical"  | sensor | https://oneiota.org/revisions/2732 |
+
+note that the implementation needs to make the connection from the resource to the actual hardware.
+
+
