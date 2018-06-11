@@ -27,5 +27,5 @@ cd IOT
 git clone https://github.com/openconnectivity/IOTivity-setup.git
 cd IOTivity-setup
 sh install_IOTivity.sh
-sh install_DeviceBuilder.sh
+sh install_DeviceBuilder.sh $1
 sh install_MRAA.sh
