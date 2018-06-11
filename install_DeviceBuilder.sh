@@ -28,15 +28,7 @@ code_path=OCFDeviceBuilder
 
 # linux pi
 # default
-ARCH=armv7l
-a="linux"
-b=$1
-echo "1=$a "
-# supplied linux on the command line, overwrite the architecture
-if [ "$a" = "$b" ]; then
-# linux unbuntu
-ARCH=x86_64
-fi
+ARCH=`uname -m`
 
 echo "using architecture: $ARCH"
 

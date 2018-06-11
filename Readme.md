@@ -103,13 +103,6 @@ referenced information:
 | IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/OpenInterConnect/IoTDataModels |
 | core          |  OCF core data models  | https://github.com/openconnectivityfoundation/core |
 
-
-
-#### linux/ubuntu as executable environment
-Default the install_DeviceBuilder.sh script installs the gen/build/run/reset scripts for the raspberry pi board.
-if one wants to use linux (ubuntu PC) as execution platform then add ```linux``` as argument on the commandline:
-```sh install_DeviceBuilder.sh linux```
-This make sure that all convienent scripts will use the linux target/paths.
     
     
 # development flow  
