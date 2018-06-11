@@ -51,6 +51,7 @@ echo "cd DeviceBuilder" >> gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/${code_path}/server.cpp " >> gen.sh
 echo "mkdir -p ../iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> gen.sh
+echo "mkdir -p .../device_output/code >/dev/null 2>&1" >> gen.sh
 echo "# quick fix: using the iotivity supplied oic_svr_db_server_justworks.dat file"
 echo "cp ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ../device_output/code/server_security.dat"
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
