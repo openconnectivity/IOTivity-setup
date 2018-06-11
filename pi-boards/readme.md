@@ -40,6 +40,9 @@ https://shop.pimoroni.com/products/automation-phat
 
 note that the implementation needs to make the connection from the resource to the actual hardware.
 
+To install the python libraries:
+
+curl https://get.pimoroni.com/automationhat | bash
 
 ## enviro phat board
 
@@ -73,4 +76,6 @@ https://shop.pimoroni.com/products/enviro-phat
 
 note that the implementation needs to make the connection from the resource to the actual hardware.
 
+To install the python libraries:
 
+curl https://get.pimoroni.com/envirophat | bash
