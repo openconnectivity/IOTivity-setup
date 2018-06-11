@@ -29,10 +29,11 @@ From the IOTivity-setup folder run the scripts (in order):
 
 e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
 
-Note running 
+Note running:
 
 ```curl  https://openconnectivity.github.io/IOTivity-setup/install.sh | bash```
-will do the same steps as described above.
+
+will do the same steps as described above, including the creation of the IOT folder.
 If one wants to see the script:
 ```curl  https://openconnectivity.github.io/IOTivity-setup/install.sh ``` or look at
 https://github.com/openconnectivity/IOTivity-setup/blob/master/install.sh
