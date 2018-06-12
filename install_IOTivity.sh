@@ -26,7 +26,7 @@ curpwd=`pwd`
 cd ..
 
 # step 1
-sudo apt-get install build-essential git scons libtool \
+sudo apt-get -y install build-essential git scons libtool \
 autoconf valgrind doxygen wget unzip cmake libboost-dev \
 libboost-program-options-dev libboost-thread-dev uuid-dev \
 libexpat1-dev libglib2.0-dev libsqlite3-dev libcurl4-gnutls-dev
