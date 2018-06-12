@@ -51,11 +51,16 @@ echo "cd DeviceBuilder" >> gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
 echo "cp ../device_output/code/server.cpp ../iotivity/examples/${code_path}/server.cpp " >> gen.sh
 echo "mkdir -p ../iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> gen.sh
-echo "mkdir -p .../device_output/code >/dev/null 2>&1" >> gen.sh
+echo "mkdir -p ../device_output/code >/dev/null 2>&1" >> gen.sh
 echo "# quick fix: using the iotivity supplied oic_svr_db_server_justworks.dat file"
 echo "cp ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ../device_output/code/server_security.dat"
 echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
-echo "cp ../device_output/code/server_security.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
+# working copy line from clarke
+#  cp ~/IOT/iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ~/IOT/iotivity/out/linux/armv7l/release/examples/OCFDeviceBuilder/server_security.dat
+#echo "cp ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat    ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+echo "cp ../device_output/code/server_security.dat  ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+
+
 echo "cd .." >> gen.sh
 
 # create the build script
@@ -73,7 +78,7 @@ echo "nano ./iotivity/examples/${code_path}/server.cpp" >> edit_code.sh
 echo "#!/bin/bash"> run.sh
 echo "CURPWD=`pwd`">> run.sh
 echo "env LD_LIBRARY_PATH=${CURPWD}/mraa/build/src" >> run.sh
-echo "ldconfig" >> run.sh
+echo "sudo ldconfig" >> run.sh
 echo "cd ./iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> run.sh
 echo "./server" >> run.sh
 echo "cd $CURPWD" >> run.sh
