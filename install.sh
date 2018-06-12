@@ -24,6 +24,11 @@ set -x #echo on
 
 mkdir IOT
 cd IOT
+# system update
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get update
+# make sure that git is there, because the scripts are using git.
 sudo apt-get install git 
 
 git clone https://github.com/openconnectivity/IOTivity-setup.git
