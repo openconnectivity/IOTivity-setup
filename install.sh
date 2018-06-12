@@ -22,8 +22,8 @@ set -x #echo on
 #
 #############################
 
-mkdir IOT
-cd IOT
+mkdir iot
+cd iot
 # system update
 sudo apt-get -y update
 sudo apt-get -y upgrade

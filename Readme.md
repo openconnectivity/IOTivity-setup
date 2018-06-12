@@ -41,7 +41,7 @@ https://github.com/openconnectivity/IOTivity-setup/blob/master/install.sh
 
 Folder structure after everything is installed:
     
-    ~/IOT        
+    ~/iot        
         |-- core             core resource definitions (in swagger) 
         |-- DeviceBuilder    The device builder tool chain
         |-- device_output    The output of device builder.
