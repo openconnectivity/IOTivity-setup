@@ -24,6 +24,8 @@ set -x #echo on
 
 mkdir IOT
 cd IOT
+sudo apt-get install git 
+
 git clone https://github.com/openconnectivity/IOTivity-setup.git
 cd IOTivity-setup
 sh install_IOTivity.sh
