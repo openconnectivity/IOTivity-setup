@@ -8,10 +8,10 @@ The scripts setup the next repos (from git) in the folders:
 
 All repos are being set up 1 level above the folder of IOTivity-setup folder.
 
-Typical folder layout to start from (e.g. create the IOT folder in the home folder)
+Typical folder layout to start from (e.g. create the iot folder in the home folder)
      
      
-     ~/IOT
+     ~/iot
      
 clone in this folder:
 
@@ -19,7 +19,7 @@ clone in this folder:
      
 This command will give the next folder structure :
      
-     ~/IOT
+     ~/iot
         |-IOTivity-setup 
     
 From the IOTivity-setup folder run the scripts (in order):
