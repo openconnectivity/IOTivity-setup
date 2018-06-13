@@ -79,3 +79,8 @@ note that the implementation needs to make the connection from the resource to t
 To install the python libraries:
 
 curl https://get.pimoroni.com/envirophat | bash
+
+## code examples 
+some code examples can be found at:
+
+https://github.com/openconnectivity/IOTivity-setup/tree/master/pi-boards/examplecode
