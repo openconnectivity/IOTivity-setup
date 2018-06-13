@@ -17,16 +17,20 @@
 // limitations under the License.
 //
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+#include "Python.h"
+
+#include <stdio.h>
+#include <errno.h>
+#include <limites.h>
+#include <assert.h>
+#include <stdlib.h>
+
 #include <signal.h>
 #include <functional>
 #include <string>
 #include <iostream>
 #include <memory>
 #include <exception>
-
-#ifdef HAVE_WINDOWS_H
-#include <windows.h>
-#endif
 
 #ifdef MRAA
 #include "mraa.hpp"
@@ -43,7 +47,9 @@ const int RELAY_2 = 35;
 const int RELAY_3 = 36;
 const int COMMS_LIGHT = 33;
 
-//#include <Python.h>
+#ifdef HAVE_WINDOWS_H
+#include <windows.h>
+#endif
 
 #include "ocstack.h"
 #include "OCPlatform.h"
@@ -194,7 +200,7 @@ Adc1Resource::Adc1Resource(std::string resourceUri)
     // initialize vector rt  Resource Type
     m_var_value_rt.push_back("oic.r.energy.electrical");
     m_var_value_voltage = 120.0; // current value of property "voltage"  The electric voltage in Volts (V).
-}
+    }
 
 /*
 * Destructor code
@@ -1494,9 +1500,7 @@ gpio->write(0);
 /*
 * Destructor code
 */
-CommslightResource::~CommslightResource() { 
-//Py_Finalize();
-}
+CommslightResource::~CommslightResource() { }
 
 OCStackResult CommslightResource::registerResource(uint8_t resourceProperty)
 {
@@ -5458,7 +5462,7 @@ OCEntityHandlerResult Output3Resource::entityHandler(std::shared_ptr<OCResourceR
 
 
 /*
- * class definition for class that handles /relay
+ * class definition for class that handles /relay1
  *
  * This resource describes a binary switch (on/off).
  * The value is a boolean.
@@ -5466,7 +5470,7 @@ OCEntityHandlerResult Output3Resource::entityHandler(std::shared_ptr<OCResourceR
  * A value of 'false' means that the switch is off.
 
 */
-class RelayResource : public Resource
+class Relay1Resource : public Resource
 {
     public:
         /*
@@ -5474,12 +5478,12 @@ class RelayResource : public Resource
          *
          * @param resourceUri the uri for this resource
          */
-        RelayResource(std::string resourceUri = "/relay");
+        Relay1Resource(std::string resourceUri = "/relay1");
 
         /*
          * destructor
          */
-         virtual ~RelayResource(void);
+         virtual ~Relay1Resource(void);
 
         /*
          * Register the resource with the server
@@ -5506,7 +5510,7 @@ class RelayResource : public Resource
     private:
 
         /*
-         * Make the payload for the retrieve function (e.g. GET) /relay
+         * Make the payload for the retrieve function (e.g. GET) /relay1
          * This resource describes a binary switch (on/off).
          * The value is a boolean.
          * A value of 'true' means that the switch is on.
@@ -5517,7 +5521,7 @@ class RelayResource : public Resource
         OCRepresentation get(OC::QueryParamsMap queries);
 
         /*
-         * Parse the payload for the update function (e.g. POST) /relay
+         * Parse the payload for the update function (e.g. POST) /relay1
 
          * @param queries  the query parameters for this call
          * @param rep  the response to get the property values from
@@ -5533,7 +5537,7 @@ class RelayResource : public Resource
         std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
         ObservationIds m_interestedObservers;
 
-        // member variables for path: "/relay"
+        // member variables for path: "/relay1"
         std::vector<std::string>  m_var_value_if; // the value for the array attribute "if": The interface set supported by this resource
         std::string m_var_name_if = "if"; // the name for the attribute "if"
         std::string m_var_value_n; // the value for the attribute "n": Friendly name of the resource
@@ -5562,12 +5566,12 @@ class RelayResource : public Resource
 /*
 * Constructor code
 */
-RelayResource::RelayResource(std::string resourceUri)
+Relay1Resource::Relay1Resource(std::string resourceUri)
 {
-    std::cout << "- Running: RelayResource constructor" << std::endl;
+    std::cout << "- Running: Relay1Resource constructor" << std::endl;
 
     m_resourceUri = resourceUri;
-    // initialize member variables /relay
+    // initialize member variables /relay1
     // initialize vector if  The interface set supported by this resource
     m_var_value_if.push_back("oic.if.baseline");
     m_var_value_if.push_back("oic.if.a");
@@ -5580,12 +5584,12 @@ RelayResource::RelayResource(std::string resourceUri)
 /*
 * Destructor code
 */
-RelayResource::~RelayResource() { }
+Relay1Resource::~Relay1Resource() { }
 
-OCStackResult RelayResource::registerResource(uint8_t resourceProperty)
+OCStackResult Relay1Resource::registerResource(uint8_t resourceProperty)
 {
     OCStackResult result = OC_STACK_ERROR;
-    EntityHandler cb = std::bind(&RelayResource::entityHandler, this,PH::_1);
+    EntityHandler cb = std::bind(&Relay1Resource::entityHandler, this,PH::_1);
     result = OCPlatform::registerResource(m_resourceHandle,
                                           m_resourceUri,
                                           m_RESOURCE_TYPE[0],
@@ -5594,7 +5598,7 @@ OCStackResult RelayResource::registerResource(uint8_t resourceProperty)
                                           resourceProperty);
     if(OC_STACK_OK != result)
     {
-        std::cerr << "Failed to register RelayResource." << std::endl;
+        std::cerr << "Failed to register Relay1Resource." << std::endl;
         return result;
     }
 
@@ -5619,7 +5623,7 @@ OCStackResult RelayResource::registerResource(uint8_t resourceProperty)
         }
     }
 
-    std::cout << "RelayResource:" << std::endl;
+    std::cout << "Relay1Resource:" << std::endl;
     std::cout << "\t" << "# resource interfaces: "
               << sizeof(m_RESOURCE_INTERFACE)/sizeof(m_RESOURCE_INTERFACE[0]) << std::endl;
     std::cout << "\t" << "# resource types     : "
@@ -5628,7 +5632,7 @@ OCStackResult RelayResource::registerResource(uint8_t resourceProperty)
     return result;
 }
 
-OCStackResult RelayResource::sendNotification(void)
+OCStackResult Relay1Resource::sendNotification(void)
 {
     OCStackResult sResult = OC_STACK_OK;
     if ( m_interestedObservers.size() > 0) {
@@ -5642,10 +5646,10 @@ OCStackResult RelayResource::sendNotification(void)
 }
 
 /*
-* Make the payload for the retrieve function (e.g. GET) /relay
+* Make the payload for the retrieve function (e.g. GET) /relay1
 * @param queries  the query parameters for this call
 */
-OCRepresentation RelayResource::get(QueryParamsMap queries)
+OCRepresentation Relay1Resource::get(QueryParamsMap queries)
 {
     OC_UNUSED(queries);
 	
@@ -5665,12 +5669,12 @@ OCRepresentation RelayResource::get(QueryParamsMap queries)
 }
 
 /*
-* Parse the payload for the update function (e.g. POST) /relay
+* Parse the payload for the update function (e.g. POST) /relay1
 * @param queries  the query parameters for this call
 * @param rep  the response to get the property values from
 * @return OCEntityHandlerResult ok or not ok indication
 */
-OCEntityHandlerResult RelayResource::post(QueryParamsMap queries, const OCRepresentation& rep)
+OCEntityHandlerResult Relay1Resource::post(QueryParamsMap queries, const OCRepresentation& rep)
 {
     OCEntityHandlerResult ehResult = OC_EH_OK;
     OC_UNUSED(queries);
@@ -5843,7 +5847,7 @@ OCEntityHandlerResult RelayResource::post(QueryParamsMap queries, const OCRepres
 /*
 * Check if the interface name is an registered interface name
 */
-bool RelayResource::in_updatable_interfaces(std::string interface_name)
+bool Relay1Resource::in_updatable_interfaces(std::string interface_name)
 {
     for (unsigned int i=0; i < (sizeof(m_IF_UPDATE)/sizeof(m_IF_UPDATE[0])); i++)
     {
@@ -5856,14 +5860,14 @@ bool RelayResource::in_updatable_interfaces(std::string interface_name)
 /*
 * the entity handler
 */
-OCEntityHandlerResult RelayResource::entityHandler(std::shared_ptr<OCResourceRequest> request)
+OCEntityHandlerResult Relay1Resource::entityHandler(std::shared_ptr<OCResourceRequest> request)
 {
     OCEntityHandlerResult ehResult = OC_EH_ERROR;
-    //std::cout << "In entity handler for RelayResource " << std::endl;
+    //std::cout << "In entity handler for Relay1Resource " << std::endl;
 
     if(request)
     {
-        std::cout << "In entity handler for RelayResource, URI is : "
+        std::cout << "In entity handler for Relay1Resource, URI is : "
                   << request->getResourceUri() << std::endl;
 
         // Check for query params (if any)
@@ -5889,7 +5893,7 @@ OCEntityHandlerResult RelayResource::entityHandler(std::shared_ptr<OCResourceReq
 
             if(request->getRequestType() == "GET")
             {
-                std::cout<<"RelayResource Get Request"<< std::endl;
+                std::cout<<"Relay1Resource Get Request"<< std::endl;
 
                 pResponse->setResourceRepresentation(get(queries), "");
                 if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
@@ -5900,7 +5904,7 @@ OCEntityHandlerResult RelayResource::entityHandler(std::shared_ptr<OCResourceReq
 
             else if(request->getRequestType() == "POST")
             {
-                std::cout <<"RelayResource Post Request"<<std::endl;
+                std::cout <<"Relay1Resource Post Request"<<std::endl;
                 bool  handle_post = true;
 
                 if (queries.size() > 0)
@@ -5945,7 +5949,1069 @@ OCEntityHandlerResult RelayResource::entityHandler(std::shared_ptr<OCResourceReq
             }
             else
             {
-                std::cout << "RelayResource unsupported request type (delete,put,..)"
+                std::cout << "Relay1Resource unsupported request type (delete,put,..)"
+                    << request->getRequestType() << std::endl;
+                pResponse->setResponseResult(OC_EH_ERROR);
+                OCPlatform::sendResponse(pResponse);
+                ehResult = OC_EH_ERROR;
+            }
+        }
+
+        if(requestFlag & RequestHandlerFlag::ObserverFlag)
+        {
+            // observe flag is set
+            ObservationInfo observationInfo = request->getObservationInfo();
+            std::cout << "\t\trequestFlag : observer ";
+            if (ObserveAction::ObserveRegister == observationInfo.action)
+            {
+                std::cout << "register" << std::endl; 
+            } 
+            else
+            {
+                std::cout << "unregister" << std::endl;
+            }
+
+            if(ObserveAction::ObserveRegister == observationInfo.action)
+            {
+                // add observer
+                m_interestedObservers.push_back(observationInfo.obsId);
+            }
+            else if(ObserveAction::ObserveUnregister == observationInfo.action)
+            {
+                // delete observer
+                m_interestedObservers.erase(std::remove(
+                                            m_interestedObservers.begin(),
+                                            m_interestedObservers.end(),
+                                            observationInfo.obsId),
+                                            m_interestedObservers.end());
+            }
+            ehResult = OC_EH_OK;
+        }
+    }
+    return ehResult;
+}
+
+
+/*
+ * class definition for class that handles /relay2
+ *
+ * This resource describes a binary switch (on/off).
+ * The value is a boolean.
+ * A value of 'true' means that the switch is on.
+ * A value of 'false' means that the switch is off.
+
+*/
+class Relay2Resource : public Resource
+{
+    public:
+        /*
+         * constructor
+         *
+         * @param resourceUri the uri for this resource
+         */
+        Relay2Resource(std::string resourceUri = "/relay2");
+
+        /*
+         * destructor
+         */
+         virtual ~Relay2Resource(void);
+
+        /*
+         * Register the resource with the server
+         *
+         * setting resourceProperty as OC_DISCOVERABLE will allow Discovery of this resource
+         * setting resourceProperty as OC_OBSERVABLE will allow observation
+         * setting resourceProperty as OC_DISCOVERABLE | OC_OBSERVABLE will allow both discovery and observation
+         * setting resourceProperty as OC_SECURE the resource supports access via secure endpoints
+         * setting resourceProperty as OC_NONSECURE the resource supports access via non-secure endpoints
+         * setting resourceProperty as OC_SECURE | OC_NONSECURE will allow access via secure and non-secure endpoints
+         *
+         * @param resourceProperty indicates the property of the resource. Defined in octypes.h.
+         */
+        OCStackResult registerResource(uint8_t resourceProperty = OC_DISCOVERABLE | OC_OBSERVABLE | OC_SECURE);
+
+        /*
+         * Attempt to send out notifications to observing clients
+         * if no value on the device has been changed no notification
+         * will be sent.
+         *
+         * @return OC_STACK_OK on success
+         */
+        OCStackResult sendNotification();
+    private:
+
+        /*
+         * Make the payload for the retrieve function (e.g. GET) /relay2
+         * This resource describes a binary switch (on/off).
+         * The value is a boolean.
+         * A value of 'true' means that the switch is on.
+         * A value of 'false' means that the switch is off.
+
+         * @param queries  the query parameters for this call
+         */
+        OCRepresentation get(OC::QueryParamsMap queries);
+
+        /*
+         * Parse the payload for the update function (e.g. POST) /relay2
+
+         * @param queries  the query parameters for this call
+         * @param rep  the response to get the property values from
+         * @return OCEntityHandlerResult ok or not ok indication
+         */
+        OCEntityHandlerResult post(OC::QueryParamsMap queries, const OC::OCRepresentation& rep);
+
+
+        std::string m_resourceUri;
+        // resource types and interfaces as array..
+        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
+        std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array)
+        std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
+        ObservationIds m_interestedObservers;
+
+        // member variables for path: "/relay2"
+        std::vector<std::string>  m_var_value_if; // the value for the array attribute "if": The interface set supported by this resource
+        std::string m_var_name_if = "if"; // the name for the attribute "if"
+        std::string m_var_value_n; // the value for the attribute "n": Friendly name of the resource
+        std::string m_var_name_n = "n"; // the name for the attribute "n"
+        std::vector<std::string>  m_var_value_rt; // the value for the array attribute "rt": Resource Type
+        std::string m_var_name_rt = "rt"; // the name for the attribute "rt"
+        bool m_var_value_value; // the value for the attribute "value": Status of the switch
+        std::string m_var_name_value = "value"; // the name for the attribute "value"
+        
+    protected:
+        /*
+         * Check if the interface is
+         * @param  interface_name the interface name used during the request
+         * @return true: updatable interface
+         */
+        bool in_updatable_interfaces(std::string interface_name);
+
+        /*
+         * the entity handler for this resource
+         * @param request the incoming request to handle
+         * @return OCEntityHandlerResult ok or not ok indication
+         */
+        virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OC::OCResourceRequest> request);
+};
+
+/*
+* Constructor code
+*/
+Relay2Resource::Relay2Resource(std::string resourceUri)
+{
+    std::cout << "- Running: Relay2Resource constructor" << std::endl;
+
+    m_resourceUri = resourceUri;
+    // initialize member variables /relay2
+    // initialize vector if  The interface set supported by this resource
+    m_var_value_if.push_back("oic.if.baseline");
+    m_var_value_if.push_back("oic.if.a");
+    m_var_value_n = "";  // current value of property "n" Friendly name of the resource
+    // initialize vector rt  Resource Type
+    m_var_value_rt.push_back("oic.r.switch.binary");
+    m_var_value_value = false; // current value of property "value" Status of the switch
+    }
+
+/*
+* Destructor code
+*/
+Relay2Resource::~Relay2Resource() { }
+
+OCStackResult Relay2Resource::registerResource(uint8_t resourceProperty)
+{
+    OCStackResult result = OC_STACK_ERROR;
+    EntityHandler cb = std::bind(&Relay2Resource::entityHandler, this,PH::_1);
+    result = OCPlatform::registerResource(m_resourceHandle,
+                                          m_resourceUri,
+                                          m_RESOURCE_TYPE[0],
+                                          m_RESOURCE_INTERFACE[0],
+                                          cb,
+                                          resourceProperty);
+    if(OC_STACK_OK != result)
+    {
+        std::cerr << "Failed to register Relay2Resource." << std::endl;
+        return result;
+    }
+
+    /// add the additional resource types
+    for( unsigned int a = 1; a < (sizeof(m_RESOURCE_TYPE)/sizeof(m_RESOURCE_TYPE[0])); a++ )
+    {
+        result = OCPlatform::bindTypeToResource(m_resourceHandle, m_RESOURCE_TYPE[a].c_str());
+        if(OC_STACK_OK != result)
+        {
+            std::cerr << "Could not bind resource type:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            return result;
+        }
+    }
+    // add the additional interfaces
+    for( unsigned int a = 1; a < (sizeof(m_RESOURCE_INTERFACE)/sizeof(m_RESOURCE_INTERFACE[0])); a++)
+    {
+        result = OCPlatform::bindInterfaceToResource(m_resourceHandle, m_RESOURCE_INTERFACE[a].c_str());
+        if(OC_STACK_OK != result)
+        {
+            std::cerr << "Could not bind interface:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            return result;
+        }
+    }
+
+    std::cout << "Relay2Resource:" << std::endl;
+    std::cout << "\t" << "# resource interfaces: "
+              << sizeof(m_RESOURCE_INTERFACE)/sizeof(m_RESOURCE_INTERFACE[0]) << std::endl;
+    std::cout << "\t" << "# resource types     : "
+              << sizeof(m_RESOURCE_TYPE)/sizeof(m_RESOURCE_TYPE[0]) << std::endl;
+
+    return result;
+}
+
+OCStackResult Relay2Resource::sendNotification(void)
+{
+    OCStackResult sResult = OC_STACK_OK;
+    if ( m_interestedObservers.size() > 0) {
+        std::cout << "Notifying list "  << m_interestedObservers.size() << " of observers\n";
+        auto pResponse = std::make_shared<OC::OCResourceResponse>();
+        sResult = OCPlatform::notifyListOfObservers(m_resourceHandle,
+                                                    m_interestedObservers,
+                                                    pResponse);
+    }
+    return sResult;
+}
+
+/*
+* Make the payload for the retrieve function (e.g. GET) /relay2
+* @param queries  the query parameters for this call
+*/
+OCRepresentation Relay2Resource::get(QueryParamsMap queries)
+{
+    OC_UNUSED(queries);
+	
+	// TODO: SENSOR add here the code to talk to the HW if one implements a sensor.
+	// the calls needs to fill in the member variable before it is returned.
+	// alternative is to have a callback from the hardware that sets the member variables
+
+    std::cout << "\t\t" << "property 'n' : "<< m_var_value_n << std::endl;
+    std::cout << "\t\t" << "property 'value' : "<< ((m_var_value_value) ? "true" : "false") << std::endl;
+    
+    m_rep.setValue(m_var_name_if,  m_var_value_if ); 
+    m_rep.setValue(m_var_name_n, m_var_value_n ); 
+    m_rep.setValue(m_var_name_rt,  m_var_value_rt ); 
+    m_rep.setValue(m_var_name_value, m_var_value_value ); 
+
+    return m_rep;
+}
+
+/*
+* Parse the payload for the update function (e.g. POST) /relay2
+* @param queries  the query parameters for this call
+* @param rep  the response to get the property values from
+* @return OCEntityHandlerResult ok or not ok indication
+*/
+OCEntityHandlerResult Relay2Resource::post(QueryParamsMap queries, const OCRepresentation& rep)
+{
+    OCEntityHandlerResult ehResult = OC_EH_OK;
+    OC_UNUSED(queries);
+    
+    // TODO: missing code: add check on array contents out of range
+	// such a check is resource specific
+    try {
+        if (rep.hasAttribute(m_var_name_if))
+        {
+            // value exist in payload
+            
+            // check if "if" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'if' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+    try {
+        if (rep.hasAttribute(m_var_name_n))
+        {
+            // value exist in payload
+            
+            // check if "n" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'n' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+    // TODO: missing code: add check on array contents out of range
+	// such a check is resource specific
+    try {
+        if (rep.hasAttribute(m_var_name_rt))
+        {
+            // value exist in payload
+            
+            // check if "rt" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'rt' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    try {
+        if (rep.hasAttribute(m_var_name_value))
+        {
+            // value exist in payload
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    if (ehResult == OC_EH_OK)
+    {
+        // no error: assign the variables
+        // array only works for integer, boolean, numbers and strings
+        // TODO: missing code, make it also work with array of objects
+        try {
+            if (rep.hasAttribute(m_var_name_if))
+            {
+                rep.getValue(m_var_name_if, m_var_value_if);
+                int first = 1;
+                std::cout << "\t\t" << "property 'if' UPDATED: " ;
+                for(auto myvar: m_var_value_if)
+                {
+                    if(first)
+                    {
+                        std::cout << myvar;
+                        first = 0;
+                    }
+                    else
+                    {
+                        std::cout << "," << myvar;
+                    }
+                }
+                std::cout <<  std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        try {
+            // value exist in payload
+            std::string temp;
+            if (rep.getValue(m_var_name_n, temp ))
+            {
+                m_var_value_n = temp;
+                std::cout << "\t\t" << "property 'n' UPDATED: " << m_var_value_n << std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }// array only works for integer, boolean, numbers and strings
+        // TODO: missing code, make it also work with array of objects
+        try {
+            if (rep.hasAttribute(m_var_name_rt))
+            {
+                rep.getValue(m_var_name_rt, m_var_value_rt);
+                int first = 1;
+                std::cout << "\t\t" << "property 'rt' UPDATED: " ;
+                for(auto myvar: m_var_value_rt)
+                {
+                    if(first)
+                    {
+                        std::cout << myvar;
+                        first = 0;
+                    }
+                    else
+                    {
+                        std::cout << "," << myvar;
+                    }
+                }
+                std::cout <<  std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        try {
+            bool temp;
+            if (rep.getValue(m_var_name_value, temp ))
+            {
+                m_var_value_value = temp;
+                std::cout << "\t\t" << "property 'value' UPDATED: " << ((m_var_value_value) ? "true" : "false") << std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+	// TODO: ACTUATOR add here the code to talk to the HW if one implements an actuator.
+	// one can use the member variables as input to those calls
+	// the member values have been updated already with the request data
+    }
+    return ehResult;
+}
+/*
+* Check if the interface name is an registered interface name
+*/
+bool Relay2Resource::in_updatable_interfaces(std::string interface_name)
+{
+    for (unsigned int i=0; i < (sizeof(m_IF_UPDATE)/sizeof(m_IF_UPDATE[0])); i++)
+    {
+        if (m_IF_UPDATE[i].compare(interface_name) == 0)
+            return true;
+    }
+    return false;
+}
+
+/*
+* the entity handler
+*/
+OCEntityHandlerResult Relay2Resource::entityHandler(std::shared_ptr<OCResourceRequest> request)
+{
+    OCEntityHandlerResult ehResult = OC_EH_ERROR;
+    //std::cout << "In entity handler for Relay2Resource " << std::endl;
+
+    if(request)
+    {
+        std::cout << "In entity handler for Relay2Resource, URI is : "
+                  << request->getResourceUri() << std::endl;
+
+        // Check for query params (if any)
+        QueryParamsMap queries = request->getQueryParameters();
+        if (!queries.empty())
+        {
+            std::cout << "\nQuery processing up to entityHandler" << std::endl;
+        }
+        for (auto it : queries)
+        {
+            std::cout << "Query key: " << it.first << " value : " << it.second
+                    << std::endl;
+        }
+        // get the value, so that we can AND it to check which flags are set
+        int requestFlag = request->getRequestHandlerFlag();
+
+        if(requestFlag & RequestHandlerFlag::RequestFlag)
+        {
+            // request flag is set
+            auto pResponse = std::make_shared<OC::OCResourceResponse>();
+            pResponse->setRequestHandle(request->getRequestHandle());
+            pResponse->setResourceHandle(request->getResourceHandle());
+
+            if(request->getRequestType() == "GET")
+            {
+                std::cout<<"Relay2Resource Get Request"<< std::endl;
+
+                pResponse->setResourceRepresentation(get(queries), "");
+                if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                {
+                    ehResult = OC_EH_OK;
+                }
+            }
+
+            else if(request->getRequestType() == "POST")
+            {
+                std::cout <<"Relay2Resource Post Request"<<std::endl;
+                bool  handle_post = true;
+
+                if (queries.size() > 0)
+                {
+                    for (const auto &eachQuery : queries)
+                    {
+                        std::string key = eachQuery.first;
+                        if (key.compare(INTERFACE_KEY) == 0)
+                        {
+                            std::string value = eachQuery.second;
+                            if (in_updatable_interfaces(value) == false)
+                            {
+                                std::cout << "Update request received via interface: " << value
+                                            << " . This interface is not authorized to update resource!!" << std::endl;
+                                pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_FORBIDDEN);
+                                handle_post = false;
+                                ehResult = OC_EH_ERROR;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (handle_post)
+                {
+                    ehResult = post(queries, request->getResourceRepresentation());
+                    if (ehResult == OC_EH_OK)
+                    {
+                        pResponse->setResourceRepresentation(get(queries), "");
+                        if (OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                        {
+                            if (OC_STACK_OK != sendNotification() )
+                            {
+                                std::cerr << "NOTIFY failed." << std::endl;
+                            }
+                        }
+                    }
+                    else
+                    {
+                         pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_ERROR);
+                    }
+                }
+            }
+            else
+            {
+                std::cout << "Relay2Resource unsupported request type (delete,put,..)"
+                    << request->getRequestType() << std::endl;
+                pResponse->setResponseResult(OC_EH_ERROR);
+                OCPlatform::sendResponse(pResponse);
+                ehResult = OC_EH_ERROR;
+            }
+        }
+
+        if(requestFlag & RequestHandlerFlag::ObserverFlag)
+        {
+            // observe flag is set
+            ObservationInfo observationInfo = request->getObservationInfo();
+            std::cout << "\t\trequestFlag : observer ";
+            if (ObserveAction::ObserveRegister == observationInfo.action)
+            {
+                std::cout << "register" << std::endl; 
+            } 
+            else
+            {
+                std::cout << "unregister" << std::endl;
+            }
+
+            if(ObserveAction::ObserveRegister == observationInfo.action)
+            {
+                // add observer
+                m_interestedObservers.push_back(observationInfo.obsId);
+            }
+            else if(ObserveAction::ObserveUnregister == observationInfo.action)
+            {
+                // delete observer
+                m_interestedObservers.erase(std::remove(
+                                            m_interestedObservers.begin(),
+                                            m_interestedObservers.end(),
+                                            observationInfo.obsId),
+                                            m_interestedObservers.end());
+            }
+            ehResult = OC_EH_OK;
+        }
+    }
+    return ehResult;
+}
+
+
+/*
+ * class definition for class that handles /relay3
+ *
+ * This resource describes a binary switch (on/off).
+ * The value is a boolean.
+ * A value of 'true' means that the switch is on.
+ * A value of 'false' means that the switch is off.
+
+*/
+class Relay3Resource : public Resource
+{
+    public:
+        /*
+         * constructor
+         *
+         * @param resourceUri the uri for this resource
+         */
+        Relay3Resource(std::string resourceUri = "/relay3");
+
+        /*
+         * destructor
+         */
+         virtual ~Relay3Resource(void);
+
+        /*
+         * Register the resource with the server
+         *
+         * setting resourceProperty as OC_DISCOVERABLE will allow Discovery of this resource
+         * setting resourceProperty as OC_OBSERVABLE will allow observation
+         * setting resourceProperty as OC_DISCOVERABLE | OC_OBSERVABLE will allow both discovery and observation
+         * setting resourceProperty as OC_SECURE the resource supports access via secure endpoints
+         * setting resourceProperty as OC_NONSECURE the resource supports access via non-secure endpoints
+         * setting resourceProperty as OC_SECURE | OC_NONSECURE will allow access via secure and non-secure endpoints
+         *
+         * @param resourceProperty indicates the property of the resource. Defined in octypes.h.
+         */
+        OCStackResult registerResource(uint8_t resourceProperty = OC_DISCOVERABLE | OC_OBSERVABLE | OC_SECURE);
+
+        /*
+         * Attempt to send out notifications to observing clients
+         * if no value on the device has been changed no notification
+         * will be sent.
+         *
+         * @return OC_STACK_OK on success
+         */
+        OCStackResult sendNotification();
+    private:
+
+        /*
+         * Make the payload for the retrieve function (e.g. GET) /relay3
+         * This resource describes a binary switch (on/off).
+         * The value is a boolean.
+         * A value of 'true' means that the switch is on.
+         * A value of 'false' means that the switch is off.
+
+         * @param queries  the query parameters for this call
+         */
+        OCRepresentation get(OC::QueryParamsMap queries);
+
+        /*
+         * Parse the payload for the update function (e.g. POST) /relay3
+
+         * @param queries  the query parameters for this call
+         * @param rep  the response to get the property values from
+         * @return OCEntityHandlerResult ok or not ok indication
+         */
+        OCEntityHandlerResult post(OC::QueryParamsMap queries, const OC::OCRepresentation& rep);
+
+
+        std::string m_resourceUri;
+        // resource types and interfaces as array..
+        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
+        std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array)
+        std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
+        ObservationIds m_interestedObservers;
+
+        // member variables for path: "/relay3"
+        std::vector<std::string>  m_var_value_if; // the value for the array attribute "if": The interface set supported by this resource
+        std::string m_var_name_if = "if"; // the name for the attribute "if"
+        std::string m_var_value_n; // the value for the attribute "n": Friendly name of the resource
+        std::string m_var_name_n = "n"; // the name for the attribute "n"
+        std::vector<std::string>  m_var_value_rt; // the value for the array attribute "rt": Resource Type
+        std::string m_var_name_rt = "rt"; // the name for the attribute "rt"
+        bool m_var_value_value; // the value for the attribute "value": Status of the switch
+        std::string m_var_name_value = "value"; // the name for the attribute "value"
+        
+    protected:
+        /*
+         * Check if the interface is
+         * @param  interface_name the interface name used during the request
+         * @return true: updatable interface
+         */
+        bool in_updatable_interfaces(std::string interface_name);
+
+        /*
+         * the entity handler for this resource
+         * @param request the incoming request to handle
+         * @return OCEntityHandlerResult ok or not ok indication
+         */
+        virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OC::OCResourceRequest> request);
+};
+
+/*
+* Constructor code
+*/
+Relay3Resource::Relay3Resource(std::string resourceUri)
+{
+    std::cout << "- Running: Relay3Resource constructor" << std::endl;
+
+    m_resourceUri = resourceUri;
+    // initialize member variables /relay3
+    // initialize vector if  The interface set supported by this resource
+    m_var_value_if.push_back("oic.if.baseline");
+    m_var_value_if.push_back("oic.if.a");
+    m_var_value_n = "";  // current value of property "n" Friendly name of the resource
+    // initialize vector rt  Resource Type
+    m_var_value_rt.push_back("oic.r.switch.binary");
+    m_var_value_value = false; // current value of property "value" Status of the switch
+    }
+
+/*
+* Destructor code
+*/
+Relay3Resource::~Relay3Resource() { }
+
+OCStackResult Relay3Resource::registerResource(uint8_t resourceProperty)
+{
+    OCStackResult result = OC_STACK_ERROR;
+    EntityHandler cb = std::bind(&Relay3Resource::entityHandler, this,PH::_1);
+    result = OCPlatform::registerResource(m_resourceHandle,
+                                          m_resourceUri,
+                                          m_RESOURCE_TYPE[0],
+                                          m_RESOURCE_INTERFACE[0],
+                                          cb,
+                                          resourceProperty);
+    if(OC_STACK_OK != result)
+    {
+        std::cerr << "Failed to register Relay3Resource." << std::endl;
+        return result;
+    }
+
+    /// add the additional resource types
+    for( unsigned int a = 1; a < (sizeof(m_RESOURCE_TYPE)/sizeof(m_RESOURCE_TYPE[0])); a++ )
+    {
+        result = OCPlatform::bindTypeToResource(m_resourceHandle, m_RESOURCE_TYPE[a].c_str());
+        if(OC_STACK_OK != result)
+        {
+            std::cerr << "Could not bind resource type:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            return result;
+        }
+    }
+    // add the additional interfaces
+    for( unsigned int a = 1; a < (sizeof(m_RESOURCE_INTERFACE)/sizeof(m_RESOURCE_INTERFACE[0])); a++)
+    {
+        result = OCPlatform::bindInterfaceToResource(m_resourceHandle, m_RESOURCE_INTERFACE[a].c_str());
+        if(OC_STACK_OK != result)
+        {
+            std::cerr << "Could not bind interface:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            return result;
+        }
+    }
+
+    std::cout << "Relay3Resource:" << std::endl;
+    std::cout << "\t" << "# resource interfaces: "
+              << sizeof(m_RESOURCE_INTERFACE)/sizeof(m_RESOURCE_INTERFACE[0]) << std::endl;
+    std::cout << "\t" << "# resource types     : "
+              << sizeof(m_RESOURCE_TYPE)/sizeof(m_RESOURCE_TYPE[0]) << std::endl;
+
+    return result;
+}
+
+OCStackResult Relay3Resource::sendNotification(void)
+{
+    OCStackResult sResult = OC_STACK_OK;
+    if ( m_interestedObservers.size() > 0) {
+        std::cout << "Notifying list "  << m_interestedObservers.size() << " of observers\n";
+        auto pResponse = std::make_shared<OC::OCResourceResponse>();
+        sResult = OCPlatform::notifyListOfObservers(m_resourceHandle,
+                                                    m_interestedObservers,
+                                                    pResponse);
+    }
+    return sResult;
+}
+
+/*
+* Make the payload for the retrieve function (e.g. GET) /relay3
+* @param queries  the query parameters for this call
+*/
+OCRepresentation Relay3Resource::get(QueryParamsMap queries)
+{
+    OC_UNUSED(queries);
+	
+	// TODO: SENSOR add here the code to talk to the HW if one implements a sensor.
+	// the calls needs to fill in the member variable before it is returned.
+	// alternative is to have a callback from the hardware that sets the member variables
+
+    std::cout << "\t\t" << "property 'n' : "<< m_var_value_n << std::endl;
+    std::cout << "\t\t" << "property 'value' : "<< ((m_var_value_value) ? "true" : "false") << std::endl;
+    
+    m_rep.setValue(m_var_name_if,  m_var_value_if ); 
+    m_rep.setValue(m_var_name_n, m_var_value_n ); 
+    m_rep.setValue(m_var_name_rt,  m_var_value_rt ); 
+    m_rep.setValue(m_var_name_value, m_var_value_value ); 
+
+    return m_rep;
+}
+
+/*
+* Parse the payload for the update function (e.g. POST) /relay3
+* @param queries  the query parameters for this call
+* @param rep  the response to get the property values from
+* @return OCEntityHandlerResult ok or not ok indication
+*/
+OCEntityHandlerResult Relay3Resource::post(QueryParamsMap queries, const OCRepresentation& rep)
+{
+    OCEntityHandlerResult ehResult = OC_EH_OK;
+    OC_UNUSED(queries);
+    
+    // TODO: missing code: add check on array contents out of range
+	// such a check is resource specific
+    try {
+        if (rep.hasAttribute(m_var_name_if))
+        {
+            // value exist in payload
+            
+            // check if "if" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'if' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+    try {
+        if (rep.hasAttribute(m_var_name_n))
+        {
+            // value exist in payload
+            
+            // check if "n" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'n' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+    // TODO: missing code: add check on array contents out of range
+	// such a check is resource specific
+    try {
+        if (rep.hasAttribute(m_var_name_rt))
+        {
+            // value exist in payload
+            
+            // check if "rt" is read only
+            ehResult = OC_EH_ERROR;
+            std::cout << "\t\t" << "property 'rt' is readOnly "<< std::endl;
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    try {
+        if (rep.hasAttribute(m_var_name_value))
+        {
+            // value exist in payload
+            
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    if (ehResult == OC_EH_OK)
+    {
+        // no error: assign the variables
+        // array only works for integer, boolean, numbers and strings
+        // TODO: missing code, make it also work with array of objects
+        try {
+            if (rep.hasAttribute(m_var_name_if))
+            {
+                rep.getValue(m_var_name_if, m_var_value_if);
+                int first = 1;
+                std::cout << "\t\t" << "property 'if' UPDATED: " ;
+                for(auto myvar: m_var_value_if)
+                {
+                    if(first)
+                    {
+                        std::cout << myvar;
+                        first = 0;
+                    }
+                    else
+                    {
+                        std::cout << "," << myvar;
+                    }
+                }
+                std::cout <<  std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        try {
+            // value exist in payload
+            std::string temp;
+            if (rep.getValue(m_var_name_n, temp ))
+            {
+                m_var_value_n = temp;
+                std::cout << "\t\t" << "property 'n' UPDATED: " << m_var_value_n << std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }// array only works for integer, boolean, numbers and strings
+        // TODO: missing code, make it also work with array of objects
+        try {
+            if (rep.hasAttribute(m_var_name_rt))
+            {
+                rep.getValue(m_var_name_rt, m_var_value_rt);
+                int first = 1;
+                std::cout << "\t\t" << "property 'rt' UPDATED: " ;
+                for(auto myvar: m_var_value_rt)
+                {
+                    if(first)
+                    {
+                        std::cout << myvar;
+                        first = 0;
+                    }
+                    else
+                    {
+                        std::cout << "," << myvar;
+                    }
+                }
+                std::cout <<  std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        try {
+            bool temp;
+            if (rep.getValue(m_var_name_value, temp ))
+            {
+                m_var_value_value = temp;
+                std::cout << "\t\t" << "property 'value' UPDATED: " << ((m_var_value_value) ? "true" : "false") << std::endl;
+            }
+            else
+            {
+                std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
+            }
+        }
+        catch (std::exception& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+	// TODO: ACTUATOR add here the code to talk to the HW if one implements an actuator.
+	// one can use the member variables as input to those calls
+	// the member values have been updated already with the request data
+    }
+    return ehResult;
+}
+/*
+* Check if the interface name is an registered interface name
+*/
+bool Relay3Resource::in_updatable_interfaces(std::string interface_name)
+{
+    for (unsigned int i=0; i < (sizeof(m_IF_UPDATE)/sizeof(m_IF_UPDATE[0])); i++)
+    {
+        if (m_IF_UPDATE[i].compare(interface_name) == 0)
+            return true;
+    }
+    return false;
+}
+
+/*
+* the entity handler
+*/
+OCEntityHandlerResult Relay3Resource::entityHandler(std::shared_ptr<OCResourceRequest> request)
+{
+    OCEntityHandlerResult ehResult = OC_EH_ERROR;
+    //std::cout << "In entity handler for Relay3Resource " << std::endl;
+
+    if(request)
+    {
+        std::cout << "In entity handler for Relay3Resource, URI is : "
+                  << request->getResourceUri() << std::endl;
+
+        // Check for query params (if any)
+        QueryParamsMap queries = request->getQueryParameters();
+        if (!queries.empty())
+        {
+            std::cout << "\nQuery processing up to entityHandler" << std::endl;
+        }
+        for (auto it : queries)
+        {
+            std::cout << "Query key: " << it.first << " value : " << it.second
+                    << std::endl;
+        }
+        // get the value, so that we can AND it to check which flags are set
+        int requestFlag = request->getRequestHandlerFlag();
+
+        if(requestFlag & RequestHandlerFlag::RequestFlag)
+        {
+            // request flag is set
+            auto pResponse = std::make_shared<OC::OCResourceResponse>();
+            pResponse->setRequestHandle(request->getRequestHandle());
+            pResponse->setResourceHandle(request->getResourceHandle());
+
+            if(request->getRequestType() == "GET")
+            {
+                std::cout<<"Relay3Resource Get Request"<< std::endl;
+
+                pResponse->setResourceRepresentation(get(queries), "");
+                if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                {
+                    ehResult = OC_EH_OK;
+                }
+            }
+
+            else if(request->getRequestType() == "POST")
+            {
+                std::cout <<"Relay3Resource Post Request"<<std::endl;
+                bool  handle_post = true;
+
+                if (queries.size() > 0)
+                {
+                    for (const auto &eachQuery : queries)
+                    {
+                        std::string key = eachQuery.first;
+                        if (key.compare(INTERFACE_KEY) == 0)
+                        {
+                            std::string value = eachQuery.second;
+                            if (in_updatable_interfaces(value) == false)
+                            {
+                                std::cout << "Update request received via interface: " << value
+                                            << " . This interface is not authorized to update resource!!" << std::endl;
+                                pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_FORBIDDEN);
+                                handle_post = false;
+                                ehResult = OC_EH_ERROR;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (handle_post)
+                {
+                    ehResult = post(queries, request->getResourceRepresentation());
+                    if (ehResult == OC_EH_OK)
+                    {
+                        pResponse->setResourceRepresentation(get(queries), "");
+                        if (OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                        {
+                            if (OC_STACK_OK != sendNotification() )
+                            {
+                                std::cerr << "NOTIFY failed." << std::endl;
+                            }
+                        }
+                    }
+                    else
+                    {
+                         pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_ERROR);
+                    }
+                }
+            }
+            else
+            {
+                std::cout << "Relay3Resource unsupported request type (delete,put,..)"
                     << request->getRequestType() << std::endl;
                 pResponse->setResponseResult(OC_EH_ERROR);
                 OCPlatform::sendResponse(pResponse);
@@ -6031,7 +7097,9 @@ class IoTServer
         Output1Resource  m_output1Instance;
         Output2Resource  m_output2Instance;
         Output3Resource  m_output3Instance;
-        RelayResource  m_relayInstance;};
+        Relay1Resource  m_relay1Instance;
+        Relay2Resource  m_relay2Instance;
+        Relay3Resource  m_relay3Instance;};
 
 IoTServer::IoTServer()
     :m_ADC1Instance(),
@@ -6047,7 +7115,9 @@ IoTServer::IoTServer()
      m_output1Instance(),
      m_output2Instance(),
      m_output3Instance(),
-     m_relayInstance()
+     m_relay1Instance(),
+     m_relay2Instance(),
+     m_relay3Instance()
 {
     std::cout << "Running IoTServer constructor" << std::endl;
 }
@@ -6125,7 +7195,17 @@ OCStackResult IoTServer::registerResources(uint8_t resourceProperty)
     {
         return result;
     }
-    result = m_relayInstance.registerResource(resourceProperty);
+    result = m_relay1Instance.registerResource(resourceProperty);
+    if(OC_STACK_OK != result)
+    {
+        return result;
+    }
+    result = m_relay2Instance.registerResource(resourceProperty);
+    if(OC_STACK_OK != result)
+    {
+        return result;
+    }
+    result = m_relay3Instance.registerResource(resourceProperty);
     if(OC_STACK_OK != result)
     {
         return result;

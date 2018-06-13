@@ -67,7 +67,19 @@
     "remove_methods" : ["post"]
   },
   {
-    "path" : "/relay",
+    "path" : "/relay1",
+    "rt"   : [ "oic.r.switch.binary" ],
+    "if"   : ["oic.if.baseline", "oic.if.a" ],
+    "remove_properties" : [ "range", "step" , "id", "precision" ]
+  },
+  {
+    "path" : "/relay2",
+    "rt"   : [ "oic.r.switch.binary" ],
+    "if"   : ["oic.if.baseline", "oic.if.a" ],
+    "remove_properties" : [ "range", "step" , "id", "precision" ]
+  },
+{
+    "path" : "/relay3",
     "rt"   : [ "oic.r.switch.binary" ],
     "if"   : ["oic.if.baseline", "oic.if.a" ],
     "remove_properties" : [ "range", "step" , "id", "precision" ]
