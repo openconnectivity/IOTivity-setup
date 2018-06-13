@@ -49,19 +49,23 @@ cd ..
 echo "#!/bin/bash" > gen.sh
 echo "cd DeviceBuilder" >> gen.sh
 echo "sh ./DeviceBuilder_C++IotivityServer.sh ../example.json  ../device_output \"oic.d.light\"" >> gen.sh
-echo "cp ../device_output/code/server.cpp ../iotivity/examples/${code_path}/server.cpp " >> gen.sh
-echo "mkdir -p ../iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> gen.sh
-echo "mkdir -p ../device_output/code >/dev/null 2>&1" >> gen.sh
-echo "# quick fix: using the iotivity supplied oic_svr_db_server_justworks.dat file"
-echo "cp ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ../device_output/code/server_security.dat"
-echo "cp ../device_output/code/server_introspection.dat ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> gen.sh
-# working copy line from clarke
-#  cp ~/IOT/iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ~/IOT/iotivity/out/linux/armv7l/release/examples/OCFDeviceBuilder/server_security.dat
-#echo "cp ../iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat    ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
-echo "cp ../device_output/code/server_security.dat  ../iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
-
-
 echo "cd .." >> gen.sh
+echo "# copying source code to compile location" >> gen.sh
+echo "cp ./device_output/code/server.cpp ./iotivity/examples/${code_path}/server.cpp " >> gen.sh
+echo "# making executable folder"  >> gen.sh
+echo "mkdir -p ./iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> gen.sh
+echo "# copying the introspection file to the executable folder" >> gen.sh
+echo "cp ./device_output/code/server_introspection.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_introspection.dat" >> gen.sh
+echo "# quick fix: using the iotivity supplied oic_svr_db_server_justworks.dat file" >> gen.sh
+# working copy line of clarke
+# copying the file so that reset.sh works
+#cp  ~/iot/iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ~/iot/device_output/code/server_security.dat
+echo "cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat     ./device_output/code/server_security.dat"
+# working copy line from clarke :
+#  cp ~/IOT/iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ~/IOT/iotivity/out/linux/armv7l/release/examples/OCFDeviceBuilder/server_security.dat
+echo "cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat     ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+#echo "cp ./device_output/code/server_security.dat  ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> gen.sh
+
 
 # create the build script
 echo "#!/bin/bash" > build.sh
@@ -86,7 +90,8 @@ echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "#!/bin/bash"> reset.sh
 echo "mkdir -p ./iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> reset.sh
-echo "cp ./device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/." >> reset.sh
+echo "cp ./device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "#cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
 
 
 cd $CURPWD
