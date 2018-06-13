@@ -90,8 +90,9 @@ echo "cd $CURPWD" >> run.sh
 # create the reset script
 echo "#!/bin/bash"> reset.sh
 echo "mkdir -p ./iotivity/out/linux/${ARCH}/release/examples/${code_path} >/dev/null 2>&1" >> reset.sh
-echo "cp ./device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
-echo "#cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "rm -f ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "#cp ./device_output/code/server_security.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
+echo "cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server_justworks.dat ./iotivity/out/linux/${ARCH}/release/examples/${code_path}/server_security.dat" >> reset.sh
 
 
 cd $CURPWD
