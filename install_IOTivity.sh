@@ -2,7 +2,7 @@
 
 #############################
 #
-#    copyright 2016 Open Interconnect Consortium, Inc. All rights reserved.
+#    copyright 2018 Open Connectivity Foundation, Inc. All rights reserved.
 #    Redistribution and use in source and binary forms, with or without modification,
 #    are permitted provided that the following conditions are met:
 #    1.  Redistributions of source code must retain the above copyright notice,
@@ -11,7 +11,7 @@
 #        this list of conditions and the following disclaimer in the documentation and/or other materials provided
 #        with the distribution.
 #
-#    THIS SOFTWARE IS PROVIDED BY THE OPEN INTERCONNECT CONSORTIUM, INC. "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+#    THIS SOFTWARE IS PROVIDED BY THE OPEN CONNECTIVITY FOUNDATION, INC. "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
 #    INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR
 #    WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED. IN NO EVENT SHALL THE OPEN INTERCONNECT CONSORTIUM, INC. OR
 #    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
