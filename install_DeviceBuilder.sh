@@ -70,7 +70,8 @@ echo "cp ./iotivity/resource/csdk/security/provisioning/sample/oic_svr_db_server
 # create the build script
 echo "#!/bin/bash" > build.sh
 echo "cd iotivity" >> build.sh
-echo "#scons resource/examples" >> build.sh
+echo "#uncomment next line for building without security" >> build.sh
+echo "#scons examples/${code_path} SECURED=0" >> build.sh
 echo "scons examples/${code_path}" >> build.sh
 echo "cd .." >> build.sh
 
@@ -84,6 +85,8 @@ echo "CURPWD=`pwd`">> run.sh
 echo "env LD_LIBRARY_PATH=${CURPWD}/mraa/build/src" >> run.sh
 echo "sudo ldconfig" >> run.sh
 echo "cd ./iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> run.sh
+echo "pwd" >> run.sh
+echo "ls" >> run.sh
 echo "./server" >> run.sh
 echo "cd $CURPWD" >> run.sh
 
