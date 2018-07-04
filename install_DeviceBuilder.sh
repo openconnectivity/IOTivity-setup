@@ -36,6 +36,10 @@ cp DeviceBuilder/DeviceBuilderInputFormat-file-examples/input-lightdevice.json e
 
 # clone the iotivity cbor conversion tool 
 git clone https://github.com/alshafi/iotivity-tool.git
+# install the python libraries that are needed for iotivity-tool
+cd iotivity-tool
+pip3 install -U -r requirements.txt
+
 # create the initial security file and place it in the code directory.
 cd $CURPWD
 sh svr2cbor.sh tocbor
