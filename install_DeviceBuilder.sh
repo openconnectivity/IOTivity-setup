@@ -81,15 +81,15 @@ echo "nano ./iotivity/examples/${code_path}/server.cpp" >> edit_code.sh
 
 # create the run script
 echo "#!/bin/bash"> run.sh
-#echo "CURPWD=`pwd`">> run.sh
-echo "CURPWD=$(pwd -P)">> run.sh
+echo 'CURPWD=`pwd`'>> run.sh
+echo 'CURPWD=$(pwd -P)'>> run.sh
 echo "env LD_LIBRARY_PATH=${CURPWD}/mraa/build/src" >> run.sh
 echo "sudo ldconfig" >> run.sh
 echo "cd ./iotivity/out/linux/${ARCH}/release/examples/${code_path}" >> run.sh
 echo "pwd" >> run.sh
 echo "ls" >> run.sh
 echo "./server" >> run.sh
-echo "cd $CURPWD" >> run.sh
+echo 'cd $CURPWD' >> run.sh
 
 # create the reset script
 echo "#!/bin/bash"> reset.sh
