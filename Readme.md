@@ -100,7 +100,7 @@ referenced information:
 | iotivity-tool |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
 | IOTivity     |  C++ code (v1.3.1)     | https://iotivity.org/ https://github.com/iotivity/iotivity |
 | MRAA          |  code library, communication abstracting hardware   | https://github.com/intel-iot-devkit/mraa.git |
-| IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/OpenInterConnect/IoTDataModels |
+| IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/openconnectivityfoundation/IoTDataModels |
 | core          |  OCF core data models  | https://github.com/openconnectivityfoundation/core |
 
     
