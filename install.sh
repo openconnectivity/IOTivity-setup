@@ -25,7 +25,8 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y update
 # make sure that git is there, because the scripts are using git.
-sudo apt-get -y install git 
+# nano and automake are needed for artik
+sudo apt-get -y install git nano automake 
 
 git clone https://github.com/openconnectivity/IOTivity-setup.git
 cd IOTivity-setup
