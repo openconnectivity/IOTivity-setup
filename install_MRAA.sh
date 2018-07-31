@@ -26,7 +26,8 @@ mkdir mraa/build
 cd mraa/build
 # build
 cmake .. && make && sudo make install
+
 # step 3
-cd ./examples 
-sudo ./blink-io 7
-cd $CURPWD
+#cd ./examples 
+#sudo ./blink-io 7
+#cd $CURPWD
