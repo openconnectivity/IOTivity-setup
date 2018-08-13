@@ -2,16 +2,26 @@
 
 This repo contains bash scripts to setup a build enviroment to use DeviceBuilder with IOTivity.
 The scripts setup the next repos (from git) in the folders:
-- iotivity (IOTivity 1.3.1)
+- iotivity (IOTivity 1.3.1 or 2.0.0)
 - DeviceBuilder (latest version)
 - mraa (MRAA library to interact with HW)
 
 All repos are being set up 1 level above the folder of IOTivity-setup folder.
 
+Running the curl command below installs the development environment with IOTivity 1.3.1:
+
+```curl  https://openconnectivity.github.io/IOTivity-setup/install.sh | bash```
+
+Running the curl command below installs the development environment with IOTivity 2.0.0:
+
+```curl  https://openconnectivity.github.io/IOTivity-setup/install2.0.sh | bash```
+
+
 Typical folder layout to start from (e.g. create the iot folder in the home folder)
      
      
      ~/iot
+     
      
 clone in this folder:
 
@@ -23,15 +33,12 @@ This command will give the next folder structure :
         |-IOTivity-setup 
     
 From the IOTivity-setup folder run the scripts (in order):
-- install_IOTivity.sh
+- install_IOTivity.sh (1.3.1)
+- install_IOTivity2.0.sh (2.0.0)
 - install_DeviceBuilder.sh
 - install_MRAA.sh
 
 e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
-
-Note running:
-
-```curl  https://openconnectivity.github.io/IOTivity-setup/install.sh | bash```
 
 will do the same steps as described above, including the creation of the IOT folder.
 If one wants to see the script:
@@ -98,7 +105,7 @@ referenced information:
 | DeviceBuilder |  tool chain  | https://github.com/openconnectivityfoundation/DeviceBuilder |
 | swagger2x |  code generation  | https://github.com/openconnectivityfoundation/swagger2x |
 | iotivity-tool |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
-| IOTivity     |  C++ code (v1.3.1)     | https://iotivity.org/ https://github.com/iotivity/iotivity |
+| IOTivity     |  C++ code (v1.3.1 or v2.0.0)     | https://iotivity.org/ https://github.com/iotivity/iotivity |
 | MRAA          |  code library, communication abstracting hardware   | https://github.com/intel-iot-devkit/mraa.git |
 | IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/openconnectivityfoundation/IoTDataModels |
 | core          |  OCF core data models  | https://github.com/openconnectivityfoundation/core |
