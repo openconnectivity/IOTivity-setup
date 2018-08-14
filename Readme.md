@@ -17,34 +17,10 @@ Running the curl command below installs the development environment with IOTivit
 ```curl  https://openconnectivity.github.io/IOTivity-setup/install2.0.sh | bash```
 
 
-Typical folder layout to start from (e.g. create the iot folder in the home folder)
-     
-     
-     ~/iot
-     
-     
-clone in this folder:
+for manual installation instructions see: 
+https://github.com/openconnectivity/IOTivity-setup/blob/master/advanced.md
 
-```git clone https://github.com/openconnectivity/IOTivity-setup.git```
-     
-This command will give the next folder structure :
-     
-     ~/iot
-        |-IOTivity-setup 
-    
-From the IOTivity-setup folder run the scripts (in order):
-- install_IOTivity.sh (1.3.1)
-- install_IOTivity2.0.sh (2.0.0)
-- install_DeviceBuilder.sh
-- install_MRAA.sh
-
-e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
-
-will do the same steps as described above, including the creation of the IOT folder.
-If one wants to see the script:
-```curl  https://openconnectivity.github.io/IOTivity-setup/install.sh ``` or look at
-https://github.com/openconnectivity/IOTivity-setup/blob/master/install.sh
-
+# Folder structure 
 
 Folder structure after everything is installed:
     

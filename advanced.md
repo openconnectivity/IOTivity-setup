@@ -1,5 +1,33 @@
 # Advanced usage
-Scripts that are intended for usage after initial setup.
+Scripts that are intended for usage after initial setup or more info of the internals.
+
+
+## manual installation (not using curl)
+
+
+Typical folder layout to start from (e.g. create the iot folder in the home folder)
+     
+     
+     ~/iot
+     
+     
+clone in this folder:
+
+```git clone https://github.com/openconnectivity/IOTivity-setup.git```
+     
+This command will give the next folder structure :
+     
+     ~/iot
+        |-IOTivity-setup 
+    
+From the IOTivity-setup folder run the scripts (in order):
+- install_IOTivity.sh (1.3.1) or install_IOTivity2.0.sh (2.0.0)
+- install_DeviceBuilder.sh
+- install_MRAA.sh
+
+e.g. exectute in the ~/IOT/IOTivity-setup folder: sh install_<>.sh
+
+
 
 # update_repos.sh
 The update_repos.sh script updates the: 
