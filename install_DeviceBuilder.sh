@@ -75,9 +75,13 @@ echo "#scons examples/${code_path} SECURED=0" >> build.sh
 echo "scons examples/${code_path}" >> build.sh
 echo "cd .." >> build.sh
 
-# create the edit script
+# create the edit code script
 echo "#!/bin/bash" > edit_code.sh
 echo "nano ./iotivity/examples/${code_path}/server.cpp" >> edit_code.sh
+
+# create the edit input script
+echo "#!/bin/bash" > edit_input.sh
+echo "nano ./example.json" >> edit_input.sh
 
 # create the run script
 echo "#!/bin/bash"> run.sh

@@ -60,6 +60,7 @@ Folder structure after everything is installed:
         |- run.sh            run the generated code
         |- reset.sh          reset the device to ready for onboarding state.
         |- edit_code.sh      edits the iotivity/examples/OCFDeviceBuilder/server.cpp file with nano.
+        |- edit_input.sh     edits the input file for device builder with nano.
         |- example.json      the input for device builder.
             
             
@@ -93,19 +94,27 @@ referenced information:
 The development flow is depicted the figure below:
 
                    start
+                     |       
+                     v
+               --------------                  
+              |              |     
+              | edit_input.sh|             --- edit the input file for the code generation
+              |              |                 default file contains the binary switch resource
+               -------------- 
                      |
+                     |       
                      v
                --------------
               |              |
-              |    gen.sh    |
-              |              |
-               --------------
+              |    gen.sh    |             ---  generates the code & introspection file
+              |              |             --- script contains the device type, 
+               --------------                  change the argument to change the device type.
                      |
                      | initial code        --- in iotivity tree, to build
                      v                     --- introspection/security files 
                --------------                  in the iotivity executable folder
               |              |     
-              | edit_code.sh |<--------
+              | edit_code.sh |<--------    --- edit the generated code
               |              |         |
                --------------          |
                      |                 |
@@ -113,7 +122,7 @@ The development flow is depicted the figure below:
                      v                 |
                --------------          |
               |              |  build  |
-              |   build.sh   |---->----|
+              |   build.sh   |---->----|   --- build the executable
               |              |  failed |
                --------------          |
                      |                 |
@@ -133,6 +142,24 @@ The development flow is depicted the figure below:
         if one wants to keep that code as reference
 
     
+    
+    
+## edit_input.sh
+This scripts edits the device builder input file with nano.
+
+### Nano
+Nano is supplied on various linux systems like ubuntu and pi.
+The file being edited is the file in iotivity tree.
+so please make sure when generating a new version, that a changed file is saved under a different name.
+
+nano beginners guide:
+
+https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/
+
+### input file
+Device Builder input file information can be found at:
+https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples
+
 ## gen.sh
 This script runs the DeviceBuilder with the arguments:
 - ~IOT/example.json as input file
@@ -159,13 +186,9 @@ copied to the executable folder from the device:
 
 ## edit_code.sh
 This scripts edits the code with nano.
-Nano is supplied on various linux systems like ubuntu and pi.
 The file being edited is the file in iotivity tree.
 so please make sure when generating a new version, that a changed file is saved under a different name.
 
-nano beginners guide:
-
-https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/
 
 ## build.sh
 This script builds the examples/OCFDeviceBuilder by means of scons.
