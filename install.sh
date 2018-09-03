@@ -33,5 +33,7 @@ cd IOTivity-setup
 sh install_IOTivity.sh
 sh install_DeviceBuilder.sh
 sh install_MRAA.sh
-if [ -d /home/artik ]; then
- sh install_ARTIKLib.sh
+if [ -d /home/artik ]
+then
+   sh install_ARTIKLib.sh
+fi
