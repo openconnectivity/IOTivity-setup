@@ -34,7 +34,7 @@ sh install_IOTivity.sh
 sh install_DeviceBuilder.sh
 if [ -d /home/artik ]
 then
-   sh install_ARTIK_Lib.sh
+   sudo apt-get install libartik-sdk-dev
 else
    sh install_MRAA.sh
 fi
