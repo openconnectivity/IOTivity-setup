@@ -35,5 +35,5 @@ sh install_DeviceBuilder.sh
 sh install_MRAA.sh
 if [ -d /home/artik ]
 then
-   sh install_ARTIKLib.sh
+   sh install_ARTIK_Lib.sh
 fi
