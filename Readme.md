@@ -142,7 +142,10 @@ The development flow is depicted the figure below:
         if one wants to keep that code as reference
 
     
-    
+### OCF clients
+information about the clients for development support can be found at:
+
+https://github.com/openconnectivityfoundation/development-support   
     
 ## edit_input.sh
 This scripts edits the device builder input file with nano.
