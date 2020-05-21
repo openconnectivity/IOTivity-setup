@@ -30,7 +30,7 @@ libexpat1-dev libglib2.0-dev libsqlite3-dev libcurl4-gnutls-dev
 # step 2
 git clone https://gerrit.iotivity.org/gerrit/iotivity
 cd iotivity
-git checkout 2.0-rel
+git checkout 2.0.0
 
 # step 3
 git clone https://github.com/01org/tinycbor.git \

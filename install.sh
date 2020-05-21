@@ -32,4 +32,9 @@ git clone https://github.com/openconnectivity/IOTivity-setup.git
 cd IOTivity-setup
 sh install_IOTivity.sh
 sh install_DeviceBuilder.sh
-sh install_MRAA.sh
+if [ -d /home/artik ]
+then
+   sudo apt-get install libartik-sdk-dev
+else
+   sh install_MRAA.sh
+fi
