@@ -1,8 +1,8 @@
-# IOTivity setup
+# IoTivity Classic setup
 
-This repo contains bash scripts to setup a build enviroment to use DeviceBuilder with IOTivity.
+This repo contains bash scripts to setup a build enviroment to use DeviceBuilder with IoTivity Classic.
 The scripts setup the next repos (from git) in the folders:
-- iotivity (IOTivity 1.3.1 or 2.0.0)
+- IoTivity Classic (IOTivity 1.3.1 or 2.0.0)
 - DeviceBuilder (latest version)
 - mraa (MRAA library to interact with HW)
 
@@ -82,7 +82,7 @@ referenced information:
 | DeviceBuilder |  tool chain  | https://github.com/openconnectivityfoundation/DeviceBuilder |
 | swagger2x |  code generation  | https://github.com/openconnectivityfoundation/swagger2x |
 | iotivity-tool |  cbor conversion for IOTivity Security  | https://github.com/alshafi/iotivity-tool.git |
-| IOTivity     |  C++ code (v1.3.1 or v2.0.0)     | https://iotivity.org/ https://github.com/iotivity/iotivity |
+| IoTivity Classic   |  C++ code (v1.3.1 or v2.0.0)     | https://iotivity.org/ https://github.com/iotivity/iotivity |
 | MRAA          |  code library, communication abstracting hardware   | https://github.com/intel-iot-devkit/mraa.git |
 | IOTdataModels  |  oneIOTa data models https://oneiota.org  |https://github.com/openconnectivityfoundation/IoTDataModels |
 | core          |  OCF core data models  | https://github.com/openconnectivityfoundation/core |
@@ -110,7 +110,7 @@ The development flow is depicted the figure below:
               |              |             --- script contains the device type, 
                --------------                  change the argument to change the device type.
                      |
-                     | initial code        --- in iotivity tree, to build
+                     | initial code        --- in iotivity classic tree, to build
                      v                     --- introspection/security files 
                --------------                  in the iotivity executable folder
               |              |     
@@ -149,7 +149,7 @@ This scripts edits the device builder input file with nano.
 
 ### Nano
 Nano is supplied on various linux systems like ubuntu and pi.
-The file being edited is the file in iotivity tree.
+The file being edited is the file in IoTivity classic tree.
 so please make sure when generating a new version, that a changed file is saved under a different name.
 
 nano beginners guide:
@@ -176,7 +176,7 @@ the next mechanisms are available to change the device type:
 	- can be done when no code has been changed yet.
 
 
-Running this script generates the device_output folder AND copies the result to the correct executable folder in the iotivity tree structure.
+Running this script generates the device_output folder AND copies the result to the correct executable folder in the IoTivity classic tree structure.
 
 copied to the executable folder from the device:
 - server.cpp to simpleserver.cpp in the examples/OCFDeviceBuilder folder
@@ -186,13 +186,13 @@ copied to the executable folder from the device:
 
 ## edit_code.sh
 This scripts edits the code with nano.
-The file being edited is the file in iotivity tree.
+The file being edited is the file in IoTivity classic tree.
 so please make sure when generating a new version, that a changed file is saved under a different name.
 
 
 ## build.sh
 This script builds the examples/OCFDeviceBuilder by means of scons.
-e.g. run in the iotivity folder the ```scons examples/OCFDeviceBuilder``` command
+e.g. run in the IoTivity classic folder the ```scons examples/OCFDeviceBuilder``` command
 
 ## run.sh
 This script executes the executable in the folder where the executable resides in.
